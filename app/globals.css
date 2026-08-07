@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --color-red: #C21A27;
+  --color-beige: #EDE8E2;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+/* Custom Glassmorphism & Panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #EDE8E2;
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* SLEEK BLACK CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #111111;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #111111 #f1f1f1;
+}
+
+/* Glow Effects */
+.glow-red {
+  box-shadow: 0 10px 30px -8px rgba(194, 26, 39, 0.35);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #C21A27 0%, #000000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
