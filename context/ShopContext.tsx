@@ -39,6 +39,10 @@ interface ShopContextType {
   totalCartPrice: number;
   isPromoPopupOpen: boolean;
   setIsPromoPopupOpen: (open: boolean) => void;
+  isCartDrawerOpen: boolean;
+  setIsCartDrawerOpen: (open: boolean) => void;
+  isAddToCartSuccessOpen: boolean;
+  setIsAddToCartSuccessOpen: (open: boolean) => void;
 }
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -49,18 +53,39 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [token, setToken] = useState<string | null>(null);
   const [appliedVoucher, setAppliedVoucher] = useState<{ code: string; discountAmount: number } | null>(null);
   const [isPromoPopupOpen, setIsPromoPopupOpen] = useState<boolean>(false);
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState<boolean>(false);
+  const [isAddToCartSuccessOpen, setIsAddToCartSuccessOpen] = useState<boolean>(false);
+  const [isCartLoaded, setIsCartLoaded] = useState<boolean>(false);
 
-  // Load state from localStorage on mount
+  // Auto close AddToCart Success Modal after 2 seconds (2000ms)
+  useEffect(() => {
+    if (isAddToCartSuccessOpen) {
+      const timer = setTimeout(() => {
+        setIsAddToCartSuccessOpen(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isAddToCartSuccessOpen]);
+
+  // 1. Load state from localStorage on initial mount
   useEffect(() => {
     try {
       const savedCart = localStorage.getItem('girlstyle_cart');
-      if (savedCart) setCart(JSON.parse(savedCart));
+      if (savedCart) {
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setCart(parsed);
+        }
+      }
 
       const savedUser = localStorage.getItem('girlstyle_user');
       if (savedUser) setUser(JSON.parse(savedUser));
 
       const savedToken = localStorage.getItem('girlstyle_token');
       if (savedToken) setToken(savedToken);
+
+      const savedVoucher = localStorage.getItem('girlstyle_applied_voucher');
+      if (savedVoucher) setAppliedVoucher(JSON.parse(savedVoucher));
 
       // Auto open promo popup after delay
       const hasSeenPopup = sessionStorage.getItem('girlstyle_popup_seen');
@@ -71,14 +96,29 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }, 1500);
       }
     } catch (e) {
-      console.error(e);
+      console.error('Error loading cart from localStorage:', e);
+    } finally {
+      setIsCartLoaded(true);
     }
   }, []);
 
-  // Save cart
+  // 2. Save cart to localStorage ONLY AFTER initial load completes
   useEffect(() => {
-    localStorage.setItem('girlstyle_cart', JSON.stringify(cart));
-  }, [cart]);
+    if (isCartLoaded) {
+      localStorage.setItem('girlstyle_cart', JSON.stringify(cart));
+    }
+  }, [cart, isCartLoaded]);
+
+  // 3. Save applied voucher to localStorage ONLY AFTER initial load completes
+  useEffect(() => {
+    if (isCartLoaded) {
+      if (appliedVoucher) {
+        localStorage.setItem('girlstyle_applied_voucher', JSON.stringify(appliedVoucher));
+      } else {
+        localStorage.removeItem('girlstyle_applied_voucher');
+      }
+    }
+  }, [appliedVoucher, isCartLoaded]);
 
   // Save user & token
   useEffect(() => {
@@ -105,6 +145,9 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       return [...prevCart, newItem];
     });
+    
+    // Trigger Success Popup Modal (Auto-close after 2s, DO NOT open cart drawer)
+    setIsAddToCartSuccessOpen(true);
   };
 
   const removeFromCart = (index: number) => {
@@ -126,6 +169,8 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const clearCart = () => {
     setCart([]);
     setAppliedVoucher(null);
+    localStorage.removeItem('girlstyle_cart');
+    localStorage.removeItem('girlstyle_applied_voucher');
   };
 
   const logout = () => {
@@ -156,7 +201,11 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
         totalCartCount,
         totalCartPrice,
         isPromoPopupOpen,
-        setIsPromoPopupOpen
+        setIsPromoPopupOpen,
+        isCartDrawerOpen,
+        setIsCartDrawerOpen,
+        isAddToCartSuccessOpen,
+        setIsAddToCartSuccessOpen
       }}
     >
       {children}

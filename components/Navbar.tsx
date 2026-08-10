@@ -7,7 +7,7 @@ import { useShop } from '../context/ShopContext';
 import AuthModal from './AuthModal';
 
 export default function Navbar() {
-  const { totalCartCount, user, logout } = useShop();
+  const { totalCartCount, user, logout, setIsCartDrawerOpen } = useShop();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -192,15 +192,19 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Shopping Cart Button */}
-              <Link href="/cart" className="p-1.5 md:p-2 text-black hover:text-[#C21A27] relative transition-transform active:scale-95">
+              {/* Shopping Cart Button - Opens Slide-over Cart Drawer */}
+              <button
+                onClick={() => setIsCartDrawerOpen(true)}
+                className="p-1.5 md:p-2 text-black hover:text-[#C21A27] relative transition-transform active:scale-95"
+                title="Giỏ hàng"
+              >
                 <ShoppingBag className="w-5 h-5 md:w-6 md:h-6" />
                 {totalCartCount > 0 && (
                   <span className="absolute top-0 right-0 w-4 h-4 md:w-5 md:h-5 bg-[#C21A27] text-white rounded-full text-[9px] md:text-[10px] font-black flex items-center justify-center shadow-md animate-bounce">
                     {totalCartCount}
                   </span>
                 )}
-              </Link>
+              </button>
             </div>
 
           </div>

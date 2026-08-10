@@ -7,6 +7,8 @@ import Footer from './Footer';
 import ChatWidget from './ChatWidget';
 import PromoPopup from './PromoPopup';
 import MobileBottomNav from './MobileBottomNav';
+import CartDrawer from './CartDrawer';
+import AddToCartSuccessModal from './AddToCartSuccessModal';
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -24,6 +26,8 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
       <ChatWidget />
       <PromoPopup />
       <MobileBottomNav />
+      <CartDrawer />
+      <AddToCartSuccessModal />
     </>
   );
 }
