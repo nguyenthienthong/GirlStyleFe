@@ -92,7 +92,7 @@
           "mainImage": "/uploads/image3_png_1786439268576.png",
           "images": [
             "/uploads/image3_png_1786439268576.png",
-            "/uploads/banner_1786360108001_801.webp",
+            "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80",
             "/products/silk_cocktail_dress.jpg"
           ]
         },
@@ -819,7 +819,7 @@
       "_id": "b_1786416128012",
       "title": "BIG SALE UP TO 50%",
       "subtitle": "ONLY STORE & ONLINE",
-      "imageUrl": "/uploads/banner_1786416125265_504.png",
+      "imageUrl": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80",
       "linkUrl": "/products?isHot=true",
       "order": 1,
       "type": "sub_banner",
@@ -829,7 +829,7 @@
       "_id": "b_1786416133609",
       "title": "BIG SALE UP TO 50%",
       "subtitle": "ONLY STORE & ONLINE",
-      "imageUrl": "/uploads/banner_1786416132070_355.png",
+      "imageUrl": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
       "linkUrl": "/products?isHot=true",
       "order": 2,
       "type": "sub_banner",
