@@ -89,8 +89,9 @@
               "stock": 10
             }
           ],
-          "mainImage": "/uploads/banner_1786360108001_801.webp",
+          "mainImage": "/uploads/image3_png_1786439268576.png",
           "images": [
+            "/uploads/image3_png_1786439268576.png",
             "/uploads/banner_1786360108001_801.webp",
             "/products/silk_cocktail_dress.jpg"
           ]
@@ -183,7 +184,8 @@
           "size": "XL",
           "stock": 10
         }
-      ]
+      ],
+      "updatedAt": "2026-08-11T09:07:52.332Z"
     },
     {
       "_id": "p1",
@@ -784,31 +786,34 @@
       "_id": "b1",
       "title": "BỘ SỰ TẬP NỮ THẦN MÙA HÈ 2026",
       "subtitle": "Rạng rỡ từng khoảnh khắc với các thiết kế đầm lụa cao cấp mới nhất",
-      "imageUrl": "/uploads/banner_1786415974939_765.png",
+      "imageUrl": "/uploads/Screen_Shot_2020-11-03_at_2_16_31_PM_png_1786439315673.png",
       "linkUrl": "/products?category=vay-dam",
       "order": 1,
       "type": "hero_slide",
-      "active": true
+      "active": true,
+      "updatedAt": "2026-08-11T09:08:39.694Z"
     },
     {
       "_id": "b2",
       "title": "ELEGANT OFFICE LOOKBOOK",
       "subtitle": "Nâng tầm phong cách công sở trẻ trung & cuốn hút",
-      "imageUrl": "/uploads/banner_1786416007055_753.jpg",
+      "imageUrl": "/uploads/z4244070516038_22593bdb058d6846b3ac8f4737d9f70f_jp_1786439328125.jpg",
       "linkUrl": "/products?occasion=Công+sở",
       "order": 2,
       "type": "hero_slide",
-      "active": true
+      "active": true,
+      "updatedAt": "2026-08-11T09:08:51.305Z"
     },
     {
       "_id": "b_1786416068747",
       "title": "banner shop",
       "subtitle": "",
-      "imageUrl": "/uploads/banner_1786416047081_98.jpg",
+      "imageUrl": "/uploads/1111_jpg_1786439343067.jpg",
       "linkUrl": "/products",
       "order": 3,
       "type": "hero_slide",
-      "active": true
+      "active": true,
+      "updatedAt": "2026-08-11T09:09:04.949Z"
     },
     {
       "_id": "b_1786416128012",
@@ -1574,5 +1579,8 @@
       "isRead": false,
       "createdAt": "2026-08-11T03:32:19.166Z"
     }
-  ]
+  ],
+  "lookbooks": [],
+  "logs": [],
+  "facebookPosts": []
 }
