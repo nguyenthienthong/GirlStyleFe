@@ -180,9 +180,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       >
         <div className="space-y-5 overflow-y-auto">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="GIRLSTYLE" className="h-8 w-auto object-contain" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/admin" className="flex items-center gap-2">
+                <img src="/logo.png?v=3" alt="GIRLSTYLE" className="h-9 md:h-11 w-auto object-contain" />
+              </Link>
+            </div>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-1 text-slate-400 hover:text-slate-900 md:hidden"

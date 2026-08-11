@@ -57,13 +57,13 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Brand Logo - Compact & Neatly Spaced */}
+            {/* Brand Logo - Official GirlStyle Horizontal Logo */}
             <div className="flex items-center">
               <Link href="/" className="flex items-center group mr-5 xl:mr-8">
                 <img
-                  src="/logo.png"
-                  alt="GIRLSTYLE Logo"
-                  className="h-7 md:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                  src="/logo.png?v=3"
+                  alt="GIRLSTYLE® Logo"
+                  className="h-10 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300 py-1"
                 />
               </Link>
 
