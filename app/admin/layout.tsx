@@ -258,7 +258,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* ADMIN SIDEBAR (Fixed Height 100vh with Always Visible Pinned Bottom Controls) */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-xs border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:h-screen md:sticky md:top-0 ${
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         {/* Top Header & Logged User Badge (Pinned Top, No Scroll) */}
