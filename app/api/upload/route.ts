@@ -4,21 +4,30 @@ import path from 'path';
 
 export async function POST(request: Request) {
   try {
-    const { imageBase64, filename } = await request.json();
+    const body = await request.json();
+    const rawImage = body.image || body.imageBase64;
+    const rawFileName = body.fileName || body.filename || 'uploaded_image';
 
-    if (!imageBase64) {
-      return NextResponse.json({ success: false, message: 'Thiếu dữ liệu ảnh Base64' }, { status: 400 });
+    if (!rawImage) {
+      return NextResponse.json(
+        { success: false, message: 'Thiếu dữ liệu tệp hình ảnh Base64' },
+        { status: 400 }
+      );
     }
 
-    const matches = imageBase64.match(/^data:image\/([a-zA-Z0-9]+);base64,(.+)$/);
-    if (!matches || matches.length !== 3) {
-      return NextResponse.json({ success: false, message: 'Định dạng Base64 không hợp lệ' }, { status: 400 });
+    let base64Data = rawImage;
+    let ext = 'jpg';
+
+    if (rawImage.includes(';base64,')) {
+      const parts = rawImage.split(';base64,');
+      base64Data = parts[1];
+      const match = parts[0].match(/data:image\/([a-zA-Z0-9]+)/);
+      if (match && match[1]) {
+        ext = match[1] === 'jpeg' ? 'jpg' : match[1];
+      }
     }
 
-    const ext = matches[1] === 'jpeg' ? 'jpg' : matches[1];
-    const dataBuffer = Buffer.from(matches[2], 'base64');
-
-    const cleanName = filename ? filename.replace(/[^a-zA-Z0-9_-]/g, '_') : 'img';
+    const cleanName = rawFileName.replace(/[^a-zA-Z0-9_-]/g, '_').substring(0, 50);
     const finalFilename = `${cleanName}_${Date.now()}.${ext}`;
 
     const uploadsDir = path.resolve(process.cwd(), 'public/uploads');
@@ -27,11 +36,21 @@ export async function POST(request: Request) {
     }
 
     const filePath = path.join(uploadsDir, finalFilename);
-    fs.writeFileSync(filePath, dataBuffer);
+    const buffer = Buffer.from(base64Data, 'base64');
+    fs.writeFileSync(filePath, buffer);
 
     const imageUrl = `/uploads/${finalFilename}`;
-    return NextResponse.json({ success: true, imageUrl, filename: finalFilename });
+
+    console.log(`[Upload Success] File written to ${filePath} -> Served at ${imageUrl}`);
+
+    return NextResponse.json({
+      success: true,
+      url: imageUrl,
+      imageUrl: imageUrl,
+      filename: finalFilename
+    });
   } catch (err: any) {
+    console.error('[Upload Error]', err);
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }
 }
