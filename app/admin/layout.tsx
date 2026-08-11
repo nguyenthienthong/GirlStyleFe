@@ -3,7 +3,33 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, ShoppingBag, Package, MessageSquare, Image, Bot, Settings, ShieldCheck, ArrowLeft, Ticket, Layers, Users, LogOut, Lock, Bell, CheckCheck, ExternalLink, X, Mail, Menu } from 'lucide-react';
+import {
+  LayoutDashboard,
+  ShoppingBag,
+  Package,
+  MessageSquare,
+  Image,
+  Bot,
+  Settings,
+  ShieldCheck,
+  ArrowLeft,
+  Ticket,
+  Layers,
+  Users,
+  LogOut,
+  Bell,
+  CheckCheck,
+  ExternalLink,
+  X,
+  Mail,
+  Menu,
+  ChevronDown,
+  ChevronRight,
+  TrendingUp,
+  Store,
+  Megaphone,
+  Sliders
+} from 'lucide-react';
 import { fetchApi } from '../../lib/api';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -18,6 +44,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [unreadCount, setUnreadCount] = useState<number>(0);
   const [isNotifOpen, setIsNotifOpen] = useState<boolean>(false);
   const [newOrderToast, setNewOrderToast] = useState<any>(null);
+
+  // Group Collapsible Accordion State
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
+    sales: true,
+    catalog: true,
+    marketing: true,
+    system: true,
+  });
+
+  const toggleGroup = (groupId: string) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [groupId]: !prev[groupId],
+    }));
+  };
 
   useEffect(() => {
     // If on /admin/login route, skip auth redirect check
@@ -45,9 +86,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     setIsCheckingAuth(false);
   }, [pathname, router]);
 
-  // Close mobile drawer when route changes
+  // Auto expand parent group based on current pathname
   useEffect(() => {
     setIsMobileMenuOpen(false);
+
+    navGroups.forEach((group) => {
+      const hasActiveChild = group.items.some((item) => item.href === pathname);
+      if (hasActiveChild) {
+        setExpandedGroups((prev) => ({ ...prev, [group.groupId]: true }));
+      }
+    });
   }, [pathname]);
 
   // Real-time Notification Polling from Backend
@@ -113,24 +161,56 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     );
   }
 
-  const navItems = [
-    { label: 'Tổng Quan Báo Cáo', href: '/admin', icon: LayoutDashboard },
-    { label: 'Quản Lý Đơn Hàng', href: '/admin/orders', icon: ShoppingBag },
-    { label: 'Sản Phẩm & Tồn Kho', href: '/admin/products', icon: Package },
-    { label: 'Bộ Phối Mix & Match', href: '/admin/lookbooks', icon: Layers },
-    { label: 'Nhật Ký & Audit Logs', href: '/admin/logs', icon: ShieldCheck },
-    { label: 'Đăng Bài Facebook 2 Chiều', href: '/admin/facebook', icon: ExternalLink },
-    { label: 'Quản Lý Quyền & User', href: '/admin/users', icon: Users },
-    { label: 'Mã Giảm Giá Voucher', href: '/admin/vouchers', icon: Ticket },
-    { label: 'Hòm Thư Khách Hàng', href: '/admin/feedback', icon: MessageSquare },
-    { label: 'CMS Banners & Popup', href: '/admin/banners', icon: Image },
-    { label: 'Trợ Lý Virtual AI Copilot', href: '/admin/ai-assistant', icon: Bot },
-    { label: 'Đồng Bộ KiotViet & Cài Đặt', href: '/admin/settings', icon: Settings },
+  // Multi-level Grouped Navigation Menu
+  const navGroups = [
+    {
+      groupTitle: 'Báo Cáo & Đơn Hàng',
+      groupId: 'sales',
+      groupIcon: TrendingUp,
+      items: [
+        { label: 'Tổng Quan Báo Cáo', href: '/admin', icon: LayoutDashboard },
+        { label: 'Quản Lý Đơn Hàng', href: '/admin/orders', icon: ShoppingBag },
+        { label: 'Nhật Ký & Audit Logs', href: '/admin/logs', icon: ShieldCheck },
+      ],
+    },
+    {
+      groupTitle: 'Sản Phẩm & Nội Dung',
+      groupId: 'catalog',
+      groupIcon: Store,
+      items: [
+        { label: 'Sản Phẩm & Tồn Kho', href: '/admin/products', icon: Package },
+        { label: 'Bộ Phối Mix & Match', href: '/admin/lookbooks', icon: Layers },
+        { label: 'CMS Banners & Popup', href: '/admin/banners', icon: Image },
+      ],
+    },
+    {
+      groupTitle: 'Marketing & Khách Hàng',
+      groupId: 'marketing',
+      groupIcon: Megaphone,
+      items: [
+        { label: 'Mã Giảm Giá Voucher', href: '/admin/vouchers', icon: Ticket },
+        { label: 'Đăng Bài Facebook 2 Chiều', href: '/admin/facebook', icon: ExternalLink },
+        { label: 'Hòm Thư Khách Hàng', href: '/admin/feedback', icon: MessageSquare },
+        { label: 'Trợ Lý Virtual AI Copilot', href: '/admin/ai-assistant', icon: Bot },
+      ],
+    },
+    {
+      groupTitle: 'Hệ Thống & Cài Đặt',
+      groupId: 'system',
+      groupIcon: Sliders,
+      items: [
+        { label: 'Quản Lý Quyền & User', href: '/admin/users', icon: Users },
+        { label: 'Đồng Bộ KiotViet & Cài Đặt', href: '/admin/settings', icon: Settings },
+      ],
+    },
   ];
+
+  // Helper to find current page label
+  const allNavItems = navGroups.flatMap((g) => g.items);
+  const currentPageTitle = allNavItems.find((n) => n.href === pathname)?.label || 'Bảng Điều Khiển';
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row relative overflow-x-hidden">
-      
       {/* Real-time Order Toast Banner */}
       {newOrderToast && (
         <div className="fixed top-5 right-5 z-50 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border-2 border-rose-500 max-w-sm animate-in slide-in-from-top-5 duration-300">
@@ -141,8 +221,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </div>
               <div>
                 <p className="text-xs font-black uppercase text-rose-300">🛒 CÓ ĐƠN HÀNG MỚI!</p>
-                <p className="text-xs font-bold text-white mt-0.5">{newOrderToast.customerName} ({newOrderToast.phone})</p>
-                <p className="text-[11px] text-slate-300 font-mono">#{newOrderToast.orderCode} • {Number(newOrderToast.amount || 0).toLocaleString('vi-VN')}đ</p>
+                <p className="text-xs font-bold text-white mt-0.5">
+                  {newOrderToast.customerName} ({newOrderToast.phone})
+                </p>
+                <p className="text-[11px] text-slate-300 font-mono">
+                  #{newOrderToast.orderCode} • {Number(newOrderToast.amount || 0).toLocaleString('vi-VN')}đ
+                </p>
               </div>
             </div>
             <button onClick={() => setNewOrderToast(null)} className="text-slate-400 hover:text-white">
@@ -174,11 +258,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* ADMIN SIDEBAR (Desktop Fixed & Mobile Slide Drawer) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-5 flex flex-col justify-between shadow-xl md:shadow-sm border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-sm border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:translate-x-0 ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="space-y-5 overflow-y-auto">
+        <div className="space-y-4 overflow-y-auto pr-1">
+          {/* Header Brand */}
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div className="flex items-center gap-3">
               <Link href="/admin" className="flex items-center gap-2">
@@ -194,7 +279,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
 
           {/* Logged user badge */}
-          <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
+          <div className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2.5 overflow-hidden">
               <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-black flex items-center justify-center shrink-0">
                 {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : 'A'}
@@ -217,28 +302,75 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </button>
           </div>
 
-          <nav className="space-y-1 text-xs font-bold">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
+          {/* Multi-Level Grouped Navigation Accordion */}
+          <nav className="space-y-3 pt-1">
+            {navGroups.map((group) => {
+              const GroupIcon = group.groupIcon;
+              const isExpanded = expandedGroups[group.groupId];
+              const hasActiveChild = group.items.some((item) => item.href === pathname);
+
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all ${
-                    isActive ? 'bg-slate-900 text-white font-black shadow-sm' : 'hover:bg-slate-100 text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <Icon className="w-4 h-4 shrink-0" />
-                  <span className="truncate">{item.label}</span>
-                </Link>
+                <div key={group.groupId} className="rounded-2xl border border-slate-100 overflow-hidden bg-slate-50/50">
+                  {/* Parent Group Header Button */}
+                  <button
+                    onClick={() => toggleGroup(group.groupId)}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-black transition-all ${
+                      hasActiveChild ? 'bg-slate-900 text-white shadow-xs' : 'bg-slate-100/80 hover:bg-slate-200 text-slate-800'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 overflow-hidden">
+                      <GroupIcon className={`w-4 h-4 shrink-0 ${hasActiveChild ? 'text-rose-400' : 'text-slate-600'}`} />
+                      <span className="truncate uppercase tracking-wider text-[11px]">{group.groupTitle}</span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span
+                        className={`px-1.5 py-0.5 rounded-full text-[10px] font-extrabold ${
+                          hasActiveChild ? 'bg-rose-500 text-white' : 'bg-slate-200 text-slate-700'
+                        }`}
+                      >
+                        {group.items.length}
+                      </span>
+                      {isExpanded ? (
+                        <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4 transition-transform duration-200" />
+                      )}
+                    </div>
+                  </button>
+
+                  {/* Child Items Dropdown List */}
+                  {isExpanded && (
+                    <div className="p-1.5 space-y-1 bg-white border-t border-slate-100 animate-in fade-in slide-in-from-top-1 duration-200">
+                      {group.items.map((item) => {
+                        const Icon = item.icon;
+                        const isActive = pathname === item.href;
+
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs transition-all ${
+                              isActive
+                                ? 'bg-rose-600 text-white font-black shadow-xs pl-4'
+                                : 'hover:bg-slate-100 text-slate-700 hover:text-slate-900 font-bold pl-3'
+                            }`}
+                          >
+                            <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                            <span className="truncate">{item.label}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>
         </div>
 
-        <div className="pt-4 border-t border-slate-200 space-y-2 text-xs font-bold shrink-0">
+        <div className="pt-3 border-t border-slate-200 space-y-2 text-xs font-bold shrink-0">
           <button
             onClick={handleLogout}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-900 hover:text-white rounded-xl transition-colors font-bold uppercase text-[11px]"
@@ -246,7 +378,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <LogOut className="w-4 h-4" /> Đăng Xuất Admin
           </button>
 
-          <Link href="/" className="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 transition-colors py-1.5 text-center text-xs">
+          <Link
+            href="/"
+            className="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 transition-colors py-1.5 text-center text-xs"
+          >
             <ArrowLeft className="w-4 h-4" /> Quay lại Website
           </Link>
         </div>
@@ -254,7 +389,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Main Admin Body Area with Top Notification Header Bar */}
       <div className="flex-1 flex flex-col min-h-screen bg-slate-50 w-full overflow-x-hidden">
-        
         {/* Top Header Bar (Responsive with Hamburger Menu for Mobile) */}
         <header className="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-xs sticky top-0 z-30">
           <div className="flex items-center gap-3">
@@ -271,7 +405,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <span className="text-xs font-bold text-slate-400 hidden sm:inline">GirlStyle® Admin</span>
               <span className="text-slate-300 hidden sm:inline">•</span>
               <span className="text-xs font-black text-slate-900 uppercase tracking-wider truncate">
-                {navItems.find((n) => n.href === pathname)?.label || 'Bảng Điều Khiển'}
+                {currentPageTitle}
               </span>
             </div>
           </div>
@@ -330,11 +464,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <div className="flex items-center justify-between">
                               <span className="font-bold text-slate-900">{n.title}</span>
                               <span className="text-[10px] text-slate-400 font-mono">
-                                {new Date(n.createdAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
+                                {new Date(n.createdAt).toLocaleTimeString('vi-VN', {
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                })}
                               </span>
                             </div>
                             <p className="text-[11px] text-slate-600 leading-snug">{n.message}</p>
-                            
+
                             <div className="pt-1 flex items-center justify-between">
                               <span className="text-[10px] font-bold text-emerald-600">📩 Đã gửi Email thông báo</span>
                               <Link
@@ -373,11 +510,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Main Children */}
-        <main className="flex-1 p-4 md:p-8 overflow-y-auto bg-slate-50 text-slate-900">
-          {children}
-        </main>
+        <main className="flex-1 p-4 md:p-8 overflow-y-auto bg-slate-50 text-slate-900">{children}</main>
       </div>
-
     </div>
   );
 }
