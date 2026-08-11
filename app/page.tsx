@@ -157,7 +157,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {categories.map((cat) => (
+          {categories.slice(0, 4).map((cat) => (
             <Link
               key={cat._id}
               href={`/products?category=${encodeURIComponent(cat.name)}`}
@@ -307,38 +307,40 @@ export default function HomePage() {
           <h2 className="text-2xl md:text-3xl font-black text-black mt-1">Khách Hàng Nói Gì Về GirlStyle?</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.length > 0 ? (
-            reviews.map((rev) => (
-              <div key={rev._id} className="p-6 rounded-2xl bg-white border-2 border-[#EDE8E2] shadow-sm flex flex-col justify-between space-y-4">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={rev.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
-                    alt={rev.customerName}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-[#C21A27]"
-                  />
-                  <div>
-                    <h4 className="text-sm font-black text-black">{rev.customerName}</h4>
-                    <div className="flex items-center gap-1 text-[#C21A27]">
-                      {[...Array(rev.rating || 5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-[#C21A27]" />
-                      ))}
-                      <span className="text-[10px] text-black font-extrabold ml-1 bg-[#EDE8E2] px-2 py-0.5 rounded">Đã Mua Hàng</span>
+            reviews.slice(0, 3).map((rev) => (
+              <div key={rev._id} className="p-6 rounded-2xl bg-white border-2 border-[#EDE8E2] shadow-sm hover:shadow-md hover:border-[#C21A27] transition-all flex flex-col justify-between space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={rev.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
+                      alt={rev.customerName}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-[#C21A27] shrink-0"
+                    />
+                    <div>
+                      <h4 className="text-sm font-black text-black">{rev.customerName}</h4>
+                      <div className="flex items-center gap-1 text-[#C21A27]">
+                        {[...Array(rev.rating || 5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-[#C21A27]" />
+                        ))}
+                        <span className="text-[10px] text-black font-extrabold ml-1 bg-[#EDE8E2] px-2 py-0.5 rounded">Đã Mua Hàng</span>
+                      </div>
                     </div>
                   </div>
+
+                  <p className="text-xs text-[#111111]/80 italic leading-relaxed font-medium">"{rev.content}"</p>
                 </div>
 
-                <p className="text-xs text-[#111111]/80 italic leading-relaxed font-medium">"{rev.content}"</p>
-
                 {rev.image && (
-                  <div className="w-20 h-20 rounded-xl overflow-hidden border border-[#EDE8E2]">
-                    <img src={rev.image} alt="Feedback picture" className="w-full h-full object-cover" />
+                  <div className="w-20 h-20 rounded-xl overflow-hidden border border-[#EDE8E2] shrink-0">
+                    <img src={rev.image} alt="Feedback picture" className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
                   </div>
                 )}
               </div>
             ))
           ) : (
-            <div className="col-span-2 text-center text-xs text-black/60 py-8">
+            <div className="col-span-3 text-center text-xs text-black/60 py-8">
               Chưa có đánh giá nào. Hãy là người đầu tiên trải nghiệm nhé!
             </div>
           )}

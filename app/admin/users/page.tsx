@@ -200,124 +200,214 @@ export default function AdminUsersPage() {
 
       </div>
 
-      {/* Users Table */}
+      {/* Users List */}
       {loading ? (
         <div className="p-12 text-center text-xs text-slate-500 font-bold">
           Đang tải danh sách tài khoản...
         </div>
       ) : filteredUsers.length > 0 ? (
-        <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-slate-100 text-slate-700 uppercase font-bold tracking-wider border-b border-slate-200">
-                <tr>
-                  <th className="p-4">Tài Khoản / Tên User</th>
-                  <th className="p-4">Số Điện Thoại & Email</th>
-                  <th className="p-4">Vai Trò (Role)</th>
-                  <th className="p-4 text-center">Quyền Viết Bài (Can Write)</th>
-                  <th className="p-4 text-right">Thao Tác</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {filteredUsers.map((u) => {
-                  const isAdmin = u.role === 'admin';
-                  const isContent = u.role === 'content';
-                  const canWrite = u.canWrite || isAdmin || isContent;
+        <>
+          {/* MOBILE VIEW: Touch-friendly Mobile Cards */}
+          <div className="space-y-3 md:hidden">
+            {filteredUsers.map((u) => {
+              const isAdmin = u.role === 'admin';
+              const isContent = u.role === 'content';
+              const canWrite = u.canWrite || isAdmin || isContent;
 
-                  return (
-                    <tr key={u._id} className="hover:bg-slate-50 transition-colors">
-                      
-                      {/* Name */}
-                      <td className="p-4 font-bold text-slate-900">
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center border border-slate-300">
-                            {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
-                          </div>
-                          <div>
-                            <p className="text-sm font-bold text-slate-900">{u.name}</p>
-                            <p className="text-[10px] text-slate-400 font-medium">ID: {u._id}</p>
-                          </div>
-                        </div>
-                      </td>
+              return (
+                <div key={u._id} className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center border border-slate-300 shrink-0">
+                        {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">{u.name}</p>
+                        <p className="text-[10px] text-slate-400 font-medium">ID: {u._id}</p>
+                      </div>
+                    </div>
 
-                      {/* Phone & Email */}
-                      <td className="p-4 font-bold text-slate-800">
-                        <p className="flex items-center gap-1">
-                          <Phone className="w-3 h-3 text-slate-500" /> {u.phone}
-                        </p>
-                        {u.email && (
-                          <p className="text-[11px] text-slate-500 font-medium flex items-center gap-1 mt-0.5">
-                            <Mail className="w-3 h-3 text-slate-400" /> {u.email}
-                          </p>
-                        )}
-                      </td>
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                        isAdmin
+                          ? 'bg-slate-900 text-white'
+                          : isContent
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-slate-100 text-slate-700 border border-slate-200'
+                      }`}
+                    >
+                      {isAdmin ? 'Admin' : isContent ? 'Biên Tập' : 'Khách'}
+                    </span>
+                  </div>
 
-                      {/* Role Badge */}
-                      <td className="p-4">
-                        <span
-                          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                            isAdmin
-                              ? 'bg-slate-900 text-white shadow-sm'
-                              : isContent
-                              ? 'bg-purple-600 text-white shadow-sm'
-                              : 'bg-slate-100 text-slate-700 border border-slate-200'
-                          }`}
-                        >
-                          {isAdmin ? '👑 Admin Master' : isContent ? '📝 Biên Tập Viên' : '🛍️ Khách Hàng'}
-                        </span>
-                      </td>
+                  <div className="flex items-center justify-between text-xs text-slate-700 pt-2 border-t border-slate-100 font-medium">
+                    <span className="flex items-center gap-1">
+                      <Phone className="w-3 h-3 text-slate-500" /> {u.phone}
+                    </span>
+                    {u.email && (
+                      <span className="flex items-center gap-1 text-[11px] text-slate-500 truncate max-w-[150px]">
+                        <Mail className="w-3 h-3 text-slate-400 shrink-0" /> <span className="truncate">{u.email}</span>
+                      </span>
+                    )}
+                  </div>
 
-                      {/* Can Write Switch */}
-                      <td className="p-4 text-center">
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <button
+                      onClick={() => handleToggleCanWrite(u)}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-bold text-[9px] uppercase transition-all ${
+                        canWrite
+                          ? 'bg-emerald-600 text-white'
+                          : 'bg-slate-100 text-slate-600'
+                      }`}
+                    >
+                      {canWrite ? (
+                        <>
+                          <PenTool className="w-3 h-3" /> Quyền Viết Bài: Bật
+                        </>
+                      ) : (
+                        <>
+                          <XCircle className="w-3 h-3" /> Quyền Viết Bài: Tắt
+                        </>
+                      )}
+                    </button>
+
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => handleOpenEditModal(u)}
+                        className="px-2.5 py-1 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 font-bold text-xs rounded-lg transition-colors flex items-center gap-1"
+                      >
+                        <Edit3 className="w-3 h-3" /> Sửa
+                      </button>
+
+                      {!isAdmin && (
                         <button
-                          onClick={() => handleToggleCanWrite(u)}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold text-[10px] uppercase transition-all shadow-sm ${
-                            canWrite
-                              ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                          }`}
-                          title="Bấm để bật / tắt quyền viết bài"
+                          onClick={() => handleDeleteUser(u._id, u.name)}
+                          className="px-2.5 py-1 bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 font-bold text-xs rounded-lg transition-colors flex items-center gap-1"
                         >
-                          {canWrite ? (
-                            <>
-                              <PenTool className="w-3.5 h-3.5" /> Có Quyền Viết Bài
-                            </>
-                          ) : (
-                            <>
-                              <XCircle className="w-3.5 h-3.5" /> Không Có Quyền
-                            </>
-                          )}
+                          <Trash2 className="w-3 h-3" /> Xóa
                         </button>
-                      </td>
-
-                      {/* Actions */}
-                      <td className="p-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            onClick={() => handleOpenEditModal(u)}
-                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 font-bold text-xs rounded-xl transition-colors flex items-center gap-1"
-                          >
-                            <Edit3 className="w-3.5 h-3.5" /> Phân Quyền
-                          </button>
-
-                          {!isAdmin && (
-                            <button
-                              onClick={() => handleDeleteUser(u._id, u.name)}
-                              className="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 font-bold text-xs rounded-xl transition-colors flex items-center gap-1"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" /> Xóa
-                            </button>
-                          )}
-                        </div>
-                      </td>
-
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
+
+          {/* DESKTOP / TABLET VIEW: Full Table */}
+          <div className="hidden md:block bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-slate-100 text-slate-700 uppercase font-bold tracking-wider border-b border-slate-200">
+                  <tr>
+                    <th className="p-4">Tài Khoản / Tên User</th>
+                    <th className="p-4">Số Điện Thoại & Email</th>
+                    <th className="p-4">Vai Trò (Role)</th>
+                    <th className="p-4 text-center">Quyền Viết Bài (Can Write)</th>
+                    <th className="p-4 text-right">Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {filteredUsers.map((u) => {
+                    const isAdmin = u.role === 'admin';
+                    const isContent = u.role === 'content';
+                    const canWrite = u.canWrite || isAdmin || isContent;
+
+                    return (
+                      <tr key={u._id} className="hover:bg-slate-50 transition-colors">
+                        
+                        {/* Name */}
+                        <td className="p-4 font-bold text-slate-900">
+                          <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center border border-slate-300">
+                              {u.name ? u.name.charAt(0).toUpperCase() : 'U'}
+                            </div>
+                            <div>
+                              <p className="text-sm font-bold text-slate-900">{u.name}</p>
+                              <p className="text-[10px] text-slate-400 font-medium">ID: {u._id}</p>
+                            </div>
+                          </div>
+                        </td>
+
+                        {/* Phone & Email */}
+                        <td className="p-4 font-bold text-slate-800">
+                          <p className="flex items-center gap-1">
+                            <Phone className="w-3 h-3 text-slate-500" /> {u.phone}
+                          </p>
+                          {u.email && (
+                            <p className="text-[11px] text-slate-500 font-medium flex items-center gap-1 mt-0.5">
+                              <Mail className="w-3 h-3 text-slate-400" /> {u.email}
+                            </p>
+                          )}
+                        </td>
+
+                        {/* Role Badge */}
+                        <td className="p-4">
+                          <span
+                            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                              isAdmin
+                                ? 'bg-slate-900 text-white shadow-sm'
+                                : isContent
+                                ? 'bg-purple-600 text-white shadow-sm'
+                                : 'bg-slate-100 text-slate-700 border border-slate-200'
+                            }`}
+                          >
+                            {isAdmin ? '👑 Admin Master' : isContent ? '📝 Biên Tập Viên' : '🛍️ Khách Hàng'}
+                          </span>
+                        </td>
+
+                        {/* Can Write Switch */}
+                        <td className="p-4 text-center">
+                          <button
+                            onClick={() => handleToggleCanWrite(u)}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold text-[10px] uppercase transition-all shadow-sm ${
+                              canWrite
+                                ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                            }`}
+                            title="Bấm để bật / tắt quyền viết bài"
+                          >
+                            {canWrite ? (
+                              <>
+                                <PenTool className="w-3.5 h-3.5" /> Có Quyền Viết Bài
+                              </>
+                            ) : (
+                              <>
+                                <XCircle className="w-3.5 h-3.5" /> Không Có Quyền
+                              </>
+                            )}
+                          </button>
+                        </td>
+
+                        {/* Actions */}
+                        <td className="p-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <button
+                              onClick={() => handleOpenEditModal(u)}
+                              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 font-bold text-xs rounded-xl transition-colors flex items-center gap-1"
+                            >
+                              <Edit3 className="w-3.5 h-3.5" /> Phân Quyền
+                            </button>
+
+                            {!isAdmin && (
+                              <button
+                                onClick={() => handleDeleteUser(u._id, u.name)}
+                                className="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 font-bold text-xs rounded-xl transition-colors flex items-center gap-1"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" /> Xóa
+                              </button>
+                            )}
+                          </div>
+                        </td>
+
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
       ) : (
         <div className="p-12 text-center bg-white rounded-3xl border border-slate-200 space-y-4">
           <User className="w-12 h-12 text-slate-300 mx-auto" />

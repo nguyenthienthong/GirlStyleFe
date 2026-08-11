@@ -40,19 +40,19 @@ export default function AdminOrdersPage() {
       
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-stone-900">Quản Lý Luồng & Trạng Thái Đơn Hàng</h1>
-          <p className="text-xs text-stone-500">Pipeline xử lý: Mới → Đang đóng gói → Đã giao ĐVVC → Hoàn thành</p>
+          <h1 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Quản Lý Luồng & Trạng Thái Đơn Hàng</h1>
+          <p className="text-xs text-slate-500 font-medium mt-0.5">Pipeline xử lý: Mới → Đang đóng gói → Đã giao ĐVVC → Hoàn thành</p>
         </div>
 
         {/* Status Filter */}
-        <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-stone-400" />
+        <div className="flex items-center gap-2 w-full md:w-auto">
+          <Filter className="w-4 h-4 text-slate-400 shrink-0" />
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-3 py-2 bg-white rounded-xl border border-stone-200 text-xs font-bold text-stone-700"
+            className="w-full md:w-auto px-3 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900"
           >
-            <option value="">Tất cả trạng thái</option>
+            <option value="">Tất cả trạng thái đơn hàng</option>
             <option value="new">🆕 Đơn Hàng Mới</option>
             <option value="packing">📦 Đang Đóng Gói</option>
             <option value="shipping">🚚 Đã Giao ĐVVC</option>
@@ -61,29 +61,29 @@ export default function AdminOrdersPage() {
         </div>
       </div>
 
-      {/* Orders List */}
+      {/* Orders Mobile Card List */}
       <div className="space-y-4">
         {orders.map((order) => (
-          <div key={order._id} className="bg-white rounded-2xl border border-stone-200/80 p-6 shadow-sm space-y-4">
+          <div key={order._id} className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm space-y-4">
             
-            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-stone-100 pb-3 gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
               <div>
-                <span className="text-sm font-extrabold text-fashion-primary font-mono">#{order.orderCode}</span>
-                <span className="text-xs text-stone-400 ml-3">{new Date(order.createdAt).toLocaleString('vi-VN')}</span>
+                <span className="text-sm font-bold text-slate-900 font-mono">#{order.orderCode}</span>
+                <span className="text-[11px] text-slate-400 ml-2 font-medium">{new Date(order.createdAt).toLocaleString('vi-VN')}</span>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase ${
+              <div className="flex items-center justify-between sm:justify-end gap-2">
+                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase ${
                   order.paymentStatus === 'paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
                 }`}>
                   {order.paymentStatus === 'paid' ? 'Đã Thanh Toán (VietQR)' : 'Chưa Thanh Toán'}
                 </span>
 
-                {/* Pipeline Status Change Buttons */}
+                {/* Pipeline Status Change Dropdown */}
                 <select
                   value={order.status}
                   onChange={(e) => handleUpdateStatus(order._id, e.target.value)}
-                  className="px-3 py-1 bg-stone-100 border border-stone-300 rounded-lg text-xs font-bold text-stone-800"
+                  className="px-2.5 py-1 bg-slate-100 border border-slate-300 rounded-lg text-xs font-bold text-slate-900"
                 >
                   <option value="new">🆕 Đơn Mới</option>
                   <option value="packing">📦 Đang Đóng Gói</option>
@@ -95,31 +95,31 @@ export default function AdminOrdersPage() {
             </div>
 
             {/* Customer & Address Details */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-stone-600 bg-stone-50 p-4 rounded-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
               <div>
-                <p className="font-bold text-stone-900">Thông tin nhận hàng:</p>
-                <p>{order.customerInfo?.name} - <strong className="text-stone-900">{order.customerInfo?.phone}</strong></p>
-                <p>{order.customerInfo?.address}, {order.customerInfo?.city}</p>
+                <p className="font-bold text-slate-900 mb-0.5">Thông tin nhận hàng:</p>
+                <p className="font-bold text-slate-900">{order.customerInfo?.name} - {order.customerInfo?.phone}</p>
+                <p className="text-[11px] text-slate-600 mt-0.5">{order.customerInfo?.address}, {order.customerInfo?.city}</p>
               </div>
 
               <div>
-                <p className="font-bold text-stone-900">Chi tiết thanh toán:</p>
-                <p>Tổng tiền món: {order.totalAmount?.toLocaleString('vi-VN')}đ</p>
-                <p>Giảm giá: -{(order.discountAmount || 0).toLocaleString('vi-VN')}đ | Phí ship: {(order.shippingFee || 0).toLocaleString('vi-VN')}đ</p>
-                <p className="font-extrabold text-fashion-primary text-sm mt-1">Tổng cộng: {order.finalAmount?.toLocaleString('vi-VN')}đ</p>
+                <p className="font-bold text-slate-900 mb-0.5">Chi tiết thanh toán:</p>
+                <p className="text-[11px]">Tổng tiền món: {order.totalAmount?.toLocaleString('vi-VN')}đ</p>
+                <p className="text-[11px]">Giảm giá: -{(order.discountAmount || 0).toLocaleString('vi-VN')}đ | Phí ship: {(order.shippingFee || 0).toLocaleString('vi-VN')}đ</p>
+                <p className="font-bold text-slate-900 text-sm mt-1">Tổng tiền: {order.finalAmount?.toLocaleString('vi-VN')}đ</p>
               </div>
             </div>
 
             {/* Order Items */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold text-stone-500 uppercase">Sản Phẩm Trong Đơn:</span>
-              <div className="flex flex-wrap gap-4">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Sản Phẩm Trong Đơn:</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {order.items?.map((it: any, i: number) => (
-                  <div key={i} className="flex items-center gap-2 p-2 bg-white rounded-lg border border-stone-200 text-xs">
-                    <img src={it.image} className="w-10 h-12 object-cover rounded" alt="" />
-                    <div>
-                      <p className="font-bold text-stone-800">{it.name}</p>
-                      <p className="text-[10px] text-stone-500">{it.color} / Size {it.size} x{it.quantity}</p>
+                  <div key={i} className="flex items-center gap-2 p-2 bg-white rounded-xl border border-slate-200 text-xs">
+                    <img src={it.image} className="w-10 h-12 object-cover rounded-lg border border-slate-200 shrink-0" alt="" />
+                    <div className="overflow-hidden">
+                      <p className="font-bold text-slate-900 truncate">{it.name}</p>
+                      <p className="text-[10px] text-slate-500 font-medium">{it.color} / Size {it.size} x{it.quantity}</p>
                     </div>
                   </div>
                 ))}

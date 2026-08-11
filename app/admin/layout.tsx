@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, ShoppingBag, Package, MessageSquare, Image, Bot, Settings, ShieldCheck, ArrowLeft, Ticket, Layers, Users, LogOut, Lock, Bell, CheckCheck, ExternalLink, X, Mail } from 'lucide-react';
+import { LayoutDashboard, ShoppingBag, Package, MessageSquare, Image, Bot, Settings, ShieldCheck, ArrowLeft, Ticket, Layers, Users, LogOut, Lock, Bell, CheckCheck, ExternalLink, X, Mail, Menu } from 'lucide-react';
 import { fetchApi } from '../../lib/api';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -11,6 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Notification System State
   const [notifications, setNotifications] = useState<any[]>([]);
@@ -44,6 +45,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     setIsCheckingAuth(false);
   }, [pathname, router]);
 
+  // Close mobile drawer when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   // Real-time Notification Polling from Backend
   useEffect(() => {
     if (pathname === '/admin/login') return;
@@ -58,7 +64,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           const unread = res.unreadCount || 0;
           setUnreadCount(unread);
 
-          // If new notification arrived, show toast banner
           if (unread > previousCount && res.notifications.length > 0) {
             const latest = res.notifications[0];
             setNewOrderToast(latest);
@@ -72,7 +77,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     };
 
     fetchNotifications();
-    const interval = setInterval(fetchNotifications, 5000); // Poll every 5s
+    const interval = setInterval(fetchNotifications, 5000);
 
     return () => clearInterval(interval);
   }, [pathname]);
@@ -93,7 +98,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.push('/admin/login');
   };
 
-  // If on login page, render children directly without admin sidebar
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
@@ -123,7 +127,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row relative">
+    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row relative overflow-x-hidden">
       
       {/* Real-time Order Toast Banner */}
       {newOrderToast && (
@@ -158,17 +162,35 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       )}
 
-      {/* Admin Sidebar Navigation */}
-      <aside className="w-full md:w-64 bg-white text-slate-900 p-6 flex flex-col justify-between shrink-0 shadow-sm border-r border-slate-200">
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+      {/* MOBILE OVERLAY BACKDROP */}
+      {isMobileMenuOpen && (
+        <div
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 md:hidden animate-in fade-in"
+        />
+      )}
+
+      {/* ADMIN SIDEBAR (Desktop Fixed & Mobile Slide Drawer) */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-5 flex flex-col justify-between shadow-xl md:shadow-sm border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:translate-x-0 ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="space-y-5 overflow-y-auto">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="GIRLSTYLE" className="h-9 w-auto object-contain" />
+              <img src="/logo.png" alt="GIRLSTYLE" className="h-8 w-auto object-contain" />
             </Link>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-1 text-slate-400 hover:text-slate-900 md:hidden"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
 
           {/* Logged user badge */}
-          <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
+          <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2.5 overflow-hidden">
               <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-black flex items-center justify-center shrink-0">
                 {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : 'A'}
@@ -184,7 +206,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
             <button
               onClick={handleLogout}
-              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-900 text-slate-600 hover:text-white transition-colors"
+              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-900 text-slate-600 hover:text-white transition-colors shrink-0"
               title="Đăng xuất khỏi Admin"
             >
               <LogOut className="w-4 h-4" />
@@ -199,46 +221,58 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all ${
                     isActive ? 'bg-slate-900 text-white font-black shadow-sm' : 'hover:bg-slate-100 text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{item.label}</span>
+                  <Icon className="w-4 h-4 shrink-0" />
+                  <span className="truncate">{item.label}</span>
                 </Link>
               );
             })}
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-slate-200 space-y-2 text-xs font-bold">
+        <div className="pt-4 border-t border-slate-200 space-y-2 text-xs font-bold shrink-0">
           <button
             onClick={handleLogout}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-900 hover:text-white rounded-xl transition-colors font-bold uppercase text-[11px]"
           >
-            <LogOut className="w-4 h-4" /> Đăng Xuất Quyền Admin
+            <LogOut className="w-4 h-4" /> Đăng Xuất Admin
           </button>
 
-          <Link href="/" className="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 transition-colors py-2 text-center text-xs">
-            <ArrowLeft className="w-4 h-4" /> Quay lại Website cửa hàng
+          <Link href="/" className="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 transition-colors py-1.5 text-center text-xs">
+            <ArrowLeft className="w-4 h-4" /> Quay lại Website
           </Link>
         </div>
       </aside>
 
       {/* Main Admin Body Area with Top Notification Header Bar */}
-      <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-50 w-full overflow-x-hidden">
         
-        {/* Top Header Bar with Realtime Notifications Dropdown */}
-        <header className="bg-white border-b border-slate-200 px-6 py-3.5 flex items-center justify-between shadow-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-400">GirlStyle® Admin CMS</span>
-            <span className="text-slate-300">•</span>
-            <span className="text-xs font-black text-slate-900 uppercase tracking-wider">
-              {navItems.find((n) => n.href === pathname)?.label || 'Bảng Điều Khiển'}
-            </span>
+        {/* Top Header Bar (Responsive with Hamburger Menu for Mobile) */}
+        <header className="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-xs sticky top-0 z-30">
+          <div className="flex items-center gap-3">
+            {/* Hamburger Button on Mobile */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 md:hidden"
+              title="Mở menu quản trị"
+            >
+              <Menu className="w-5 h-5 stroke-[2.5px]" />
+            </button>
+
+            <div className="flex items-center gap-2 overflow-hidden">
+              <span className="text-xs font-bold text-slate-400 hidden sm:inline">GirlStyle® Admin</span>
+              <span className="text-slate-300 hidden sm:inline">•</span>
+              <span className="text-xs font-black text-slate-900 uppercase tracking-wider truncate">
+                {navItems.find((n) => n.href === pathname)?.label || 'Bảng Điều Khiển'}
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4 relative">
+          <div className="flex items-center gap-3 relative">
             {/* Notification Bell Dropdown Button */}
             <div className="relative">
               <button
@@ -327,7 +361,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
 
             {/* Email simulation notification pill */}
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200">
+            <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200">
               <Mail className="w-3.5 h-3.5 text-emerald-600" />
               <span>Email Admin: admin@girlstyle.vn</span>
             </div>
@@ -335,7 +369,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Main Children */}
-        <main className="flex-1 p-6 md:p-10 overflow-y-auto bg-slate-50 text-slate-900">
+        <main className="flex-1 p-4 md:p-8 overflow-y-auto bg-slate-50 text-slate-900">
           {children}
         </main>
       </div>

@@ -403,114 +403,172 @@ export default function AdminProductsPage() {
         </div>
       </div>
 
-      {/* PRODUCT LIST TABLE */}
+      {/* PRODUCT LIST */}
       {loading ? (
         <div className="p-12 text-center text-xs font-bold text-slate-500">
           Đang tải danh sách sản phẩm...
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs text-left text-slate-900 border-collapse">
-              <thead>
-                <tr className="bg-slate-100 border-b border-slate-200 font-bold text-slate-700 uppercase tracking-wider">
-                  <th className="p-4">Sản Phẩm</th>
-                  <th className="p-4">Mã SKU</th>
-                  <th className="p-4">Danh Mục</th>
-                  <th className="p-4">Giá Bán</th>
-                  <th className="p-4">Chi Tiết Tồn Kho (Màu & Size)</th>
-                  <th className="p-4 text-right">Thao Tác</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 font-medium">
-                {filteredProducts.map((p) => {
-                  const mainImg = p.colors?.[0]?.mainImage || p.image || '/products/silk_cocktail_dress.jpg';
-                  const displayPrice = p.salePrice || p.price;
+        <>
+          {/* MOBILE VIEW: Touch-friendly Mobile Cards */}
+          <div className="space-y-4 md:hidden">
+            {filteredProducts.map((p) => {
+              const mainImg = p.colors?.[0]?.mainImage || p.image || '/products/silk_cocktail_dress.jpg';
+              const displayPrice = p.salePrice || p.price;
 
-                  return (
-                    <tr key={p._id} className="hover:bg-slate-50 transition-colors">
-                      
-                      <td className="p-4 flex items-center gap-3">
-                        <img src={mainImg} className="w-12 h-14 object-cover rounded-xl border border-slate-200 shrink-0" alt="" />
-                        <div>
-                          <p className="font-bold text-slate-900 line-clamp-1">{p.name}</p>
-                          {p.isAiGenerated && (
-                            <span className="inline-flex items-center gap-1 mt-0.5 px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded-full">
-                              <Sparkles className="w-3 h-3 text-purple-600" /> AI Try-on
-                            </span>
-                          )}
-                        </div>
-                      </td>
-
-                      <td className="p-4 font-mono font-bold text-slate-800">{p.code}</td>
-                      <td className="p-4 font-bold text-slate-600">{p.category}</td>
-
-                      <td className="p-4 font-bold text-slate-900">
+              return (
+                <div key={p._id} className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+                  <div className="flex items-center gap-3">
+                    <img src={mainImg} className="w-14 h-16 object-cover rounded-xl border border-slate-200 shrink-0" alt="" />
+                    <div className="flex-1 overflow-hidden">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono font-bold text-slate-800 text-xs">{p.code}</span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 rounded">{p.category}</span>
+                      </div>
+                      <h4 className="font-bold text-slate-900 text-xs line-clamp-1 mt-0.5">{p.name}</h4>
+                      <p className="text-xs font-bold text-slate-900 mt-1">
                         {displayPrice ? `${displayPrice.toLocaleString('vi-VN')}đ` : '0đ'}
-                        {p.salePrice && p.price > p.salePrice && (
-                          <span className="block text-[10px] text-slate-400 line-through font-bold">
-                            {p.price.toLocaleString('vi-VN')}đ
-                          </span>
-                        )}
-                      </td>
+                      </p>
+                    </div>
+                  </div>
 
-                      <td className="p-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          {p.colors?.map((c: any, i: number) => (
-                            <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200">
-                              <span
-                                className="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-sm shrink-0"
-                                style={{ backgroundColor: c.hex || '#000000' }}
-                              />
-                              <div className="text-[10px] font-bold text-slate-700 space-x-1">
-                                {(c.sizeStocks && Array.isArray(c.sizeStocks) ? c.sizeStocks : (c.sizes || []).map((s: string) => ({ size: s, stock: 10 }))).map((st: any, idx: number) => (
-                                  <span key={idx} className={st.stock <= 2 ? 'text-rose-600 font-extrabold' : ''}>
-                                    {st.size}: <strong>{st.stock}</strong>{idx < (c.sizeStocks?.length || c.sizes?.length) - 1 ? ',' : ''}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
+                  {/* Colors & Stocks */}
+                  <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-1.5">
+                    {p.colors?.map((c: any, i: number) => (
+                      <div key={i} className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-slate-50 border border-slate-200">
+                        <span className="w-3 h-3 rounded-full border border-slate-300 shrink-0" style={{ backgroundColor: c.hex || '#000000' }} />
+                        <div className="text-[9px] font-bold text-slate-700 space-x-1">
+                          {(c.sizeStocks && Array.isArray(c.sizeStocks) ? c.sizeStocks : (c.sizes || []).map((s: string) => ({ size: s, stock: 10 }))).map((st: any, idx: number) => (
+                            <span key={idx} className={st.stock <= 2 ? 'text-rose-600 font-extrabold' : ''}>
+                              {st.size}:{st.stock}
+                            </span>
                           ))}
                         </div>
-                      </td>
+                      </div>
+                    ))}
+                  </div>
 
-                      {/* EDIT & DELETE ACTION BUTTONS */}
-                      <td className="p-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <Link
-                            href={`/products/${p._id}`}
-                            target="_blank"
-                            className="p-2 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 rounded-xl transition-colors"
-                            title="Xem trang sản phẩm"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Link>
-
-                          <button
-                            onClick={() => handleOpenEditModal(p)}
-                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 text-xs font-bold rounded-xl transition-colors flex items-center gap-1"
-                            title="Sửa màu sắc & Số lượng tồn theo Size"
-                          >
-                            <Edit3 className="w-3.5 h-3.5" /> Sửa Tồn Kho
-                          </button>
-
-                          <button
-                            onClick={() => handleDelete(p._id)}
-                            className="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 text-xs font-bold rounded-xl transition-colors flex items-center gap-1"
-                            title="Xóa sản phẩm"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" /> Xóa
-                          </button>
-                        </div>
-                      </td>
-
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                  {/* Actions */}
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-end gap-2">
+                    <Link href={`/products/${p._id}`} target="_blank" className="p-2 bg-slate-100 text-slate-700 rounded-xl">
+                      <Eye className="w-4 h-4" />
+                    </Link>
+                    <button onClick={() => handleOpenEditModal(p)} className="px-3 py-1.5 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 text-xs font-bold rounded-xl flex items-center gap-1">
+                      <Edit3 className="w-3.5 h-3.5" /> Sửa Tồn Kho
+                    </button>
+                    <button onClick={() => handleDelete(p._id)} className="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 text-xs font-bold rounded-xl flex items-center gap-1">
+                      <Trash2 className="w-3.5 h-3.5" /> Xóa
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
+
+          {/* DESKTOP / TABLET VIEW: Table */}
+          <div className="hidden md:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs text-left text-slate-900 border-collapse">
+                <thead>
+                  <tr className="bg-slate-100 border-b border-slate-200 font-bold text-slate-700 uppercase tracking-wider">
+                    <th className="p-4">Sản Phẩm</th>
+                    <th className="p-4">Mã SKU</th>
+                    <th className="p-4">Danh Mục</th>
+                    <th className="p-4">Giá Bán</th>
+                    <th className="p-4">Chi Tiết Tồn Kho (Màu & Size)</th>
+                    <th className="p-4 text-right">Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 font-medium">
+                  {filteredProducts.map((p) => {
+                    const mainImg = p.colors?.[0]?.mainImage || p.image || '/products/silk_cocktail_dress.jpg';
+                    const displayPrice = p.salePrice || p.price;
+
+                    return (
+                      <tr key={p._id} className="hover:bg-slate-50 transition-colors">
+                        
+                        <td className="p-4 flex items-center gap-3">
+                          <img src={mainImg} className="w-12 h-14 object-cover rounded-xl border border-slate-200 shrink-0" alt="" />
+                          <div>
+                            <p className="font-bold text-slate-900 line-clamp-1">{p.name}</p>
+                            {p.isAiGenerated && (
+                              <span className="inline-flex items-center gap-1 mt-0.5 px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded-full">
+                                <Sparkles className="w-3 h-3 text-purple-600" /> AI Try-on
+                              </span>
+                            )}
+                          </div>
+                        </td>
+
+                        <td className="p-4 font-mono font-bold text-slate-800">{p.code}</td>
+                        <td className="p-4 font-bold text-slate-600">{p.category}</td>
+
+                        <td className="p-4 font-bold text-slate-900">
+                          {displayPrice ? `${displayPrice.toLocaleString('vi-VN')}đ` : '0đ'}
+                          {p.salePrice && p.price > p.salePrice && (
+                            <span className="block text-[10px] text-slate-400 line-through font-bold">
+                              {p.price.toLocaleString('vi-VN')}đ
+                            </span>
+                          )}
+                        </td>
+
+                        <td className="p-4">
+                          <div className="flex flex-wrap items-center gap-2">
+                            {p.colors?.map((c: any, i: number) => (
+                              <div key={i} className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200">
+                                <span
+                                  className="w-3.5 h-3.5 rounded-full border border-slate-300 shadow-sm shrink-0"
+                                  style={{ backgroundColor: c.hex || '#000000' }}
+                                />
+                                <div className="text-[10px] font-bold text-slate-700 space-x-1">
+                                  {(c.sizeStocks && Array.isArray(c.sizeStocks) ? c.sizeStocks : (c.sizes || []).map((s: string) => ({ size: s, stock: 10 }))).map((st: any, idx: number) => (
+                                    <span key={idx} className={st.stock <= 2 ? 'text-rose-600 font-extrabold' : ''}>
+                                      {st.size}: <strong>{st.stock}</strong>{idx < (c.sizeStocks?.length || c.sizes?.length) - 1 ? ',' : ''}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+
+                        {/* EDIT & DELETE ACTION BUTTONS */}
+                        <td className="p-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Link
+                              href={`/products/${p._id}`}
+                              target="_blank"
+                              className="p-2 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 rounded-xl transition-colors"
+                              title="Xem trang sản phẩm"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </Link>
+
+                            <button
+                              onClick={() => handleOpenEditModal(p)}
+                              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-800 text-xs font-bold rounded-xl transition-colors flex items-center gap-1"
+                              title="Sửa màu sắc & Số lượng tồn theo Size"
+                            >
+                              <Edit3 className="w-3.5 h-3.5" /> Sửa Tồn Kho
+                            </button>
+
+                            <button
+                              onClick={() => handleDelete(p._id)}
+                              className="px-3 py-1.5 bg-rose-50 hover:bg-rose-600 hover:text-white text-rose-600 text-xs font-bold rounded-xl transition-colors flex items-center gap-1"
+                              title="Xóa sản phẩm"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" /> Xóa
+                            </button>
+                          </div>
+                        </td>
+
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
       )}
 
       {/* CREATE / EDIT PRODUCT MODAL FORM */}
