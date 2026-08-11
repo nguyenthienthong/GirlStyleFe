@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Package, Truck, CheckCircle2, Clock, XCircle, Search, Filter } from 'lucide-react';
 import { fetchApi } from '../../../lib/api';
+import AdminPageHeader from '../../../components/admin/AdminPageHeader';
+import StatusBadge from '../../../components/StatusBadge';
 
 export default function AdminOrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -38,19 +40,17 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Quản Lý Luồng & Trạng Thái Đơn Hàng</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">Pipeline xử lý: Mới → Đang đóng gói → Đã giao ĐVVC → Hoàn thành</p>
-        </div>
-
-        {/* Status Filter */}
-        <div className="flex items-center gap-2 w-full md:w-auto">
+      {/* Reusable Admin Page Header */}
+      <AdminPageHeader
+        title="Quản Lý Luồng & Trạng Thái Đơn Hàng"
+        description="Pipeline xử lý: Mới → Đang đóng gói → Đã giao ĐVVC → Hoàn thành"
+      >
+        <div className="flex items-center gap-2 w-full sm:w-auto">
           <Filter className="w-4 h-4 text-slate-400 shrink-0" />
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="w-full md:w-auto px-3 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900"
+            className="w-full sm:w-auto px-3 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900"
           >
             <option value="">Tất cả trạng thái đơn hàng</option>
             <option value="new">🆕 Đơn Hàng Mới</option>
@@ -59,9 +59,9 @@ export default function AdminOrdersPage() {
             <option value="completed">✅ Hoàn Thành</option>
           </select>
         </div>
-      </div>
+      </AdminPageHeader>
 
-      {/* Orders Mobile Card List */}
+      {/* Orders Mobile Card List & Desktop Cards */}
       <div className="space-y-4">
         {orders.map((order) => (
           <div key={order._id} className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm space-y-4">
@@ -73,11 +73,8 @@ export default function AdminOrdersPage() {
               </div>
 
               <div className="flex items-center justify-between sm:justify-end gap-2">
-                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase ${
-                  order.paymentStatus === 'paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                }`}>
-                  {order.paymentStatus === 'paid' ? 'Đã Thanh Toán (VietQR)' : 'Chưa Thanh Toán'}
-                </span>
+                {/* Reusable Payment Status Badge */}
+                <StatusBadge type="payment" value={order.paymentStatus} />
 
                 {/* Pipeline Status Change Dropdown */}
                 <select

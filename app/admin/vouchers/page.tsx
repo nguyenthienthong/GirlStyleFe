@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Ticket, Plus, Trash2, Edit3, CheckCircle2, Calendar, Tag, DollarSign, Percent, Copy, Check } from 'lucide-react';
 import { fetchApi } from '../../../lib/api';
+import AdminPageHeader from '../../../components/admin/AdminPageHeader';
+import AdminModal from '../../../components/AdminModal';
 
 export default function AdminVouchersPage() {
   const [vouchers, setVouchers] = useState<any[]>([]);
@@ -16,7 +18,7 @@ export default function AdminVouchersPage() {
   const [formData, setFormData] = useState({
     code: '',
     description: '',
-    discountType: 'fixed', // 'fixed' | 'percent'
+    discountType: 'fixed',
     discountValue: 50000,
     minOrderValue: 300000,
     maxDiscount: 100000,
@@ -147,22 +149,13 @@ export default function AdminVouchersPage() {
         </div>
       )}
 
-      {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
-        <div>
-          <h1 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Quản Lý Mã Giảm Giá (Vouchers)</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">
-            Tạo và thiết lập các mã voucher ưu đãi cho khách hàng khi mua sắm tại cửa hàng
-          </p>
-        </div>
-
-        <button
-          onClick={handleOpenCreateModal}
-          className="px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow transition-all flex items-center gap-2 w-fit"
-        >
-          <Plus className="w-4 h-4 stroke-[3px]" /> Tạo Voucher Mới
-        </button>
-      </div>
+      {/* Reusable Admin Page Header */}
+      <AdminPageHeader
+        title="Quản Lý Mã Giảm Giá (Vouchers)"
+        description="Tạo và thiết lập các mã voucher ưu đãi cho khách hàng khi mua sắm tại cửa hàng"
+        actionLabel="Tạo Voucher Mới"
+        onAction={handleOpenCreateModal}
+      />
 
       {/* Vouchers Grid List */}
       {loading ? (
@@ -266,157 +259,131 @@ export default function AdminVouchersPage() {
         </div>
       )}
 
-      {/* CREATE / EDIT VOUCHER MODAL */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in">
-          <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-300 animate-in zoom-in-95">
-            
-            {/* Modal Header */}
-            <div className="p-5 bg-slate-900 text-white flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Ticket className="w-5 h-5 text-slate-300" />
-                <h3 className="text-base font-bold uppercase tracking-wider">
-                  {editingVoucher ? 'Chỉnh Sửa Mã Giảm Giá' : 'Tạo Mã Giảm Giá Mới'}
-                </h3>
-              </div>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-white font-bold text-lg p-1"
+      {/* REUSABLE ADMIN MODAL */}
+      <AdminModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={editingVoucher ? 'Chỉnh Sửa Mã Giảm Giá' : 'Tạo Mã Giảm Giá Mới'}
+        icon={Ticket}
+        maxWidth="md"
+      >
+        <form onSubmit={handleSubmitForm} className="space-y-4">
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Mã Voucher (Coupon Code) *</label>
+            <input
+              type="text"
+              required
+              placeholder="VD: GIRLSTYLE50K, SUMMER20..."
+              value={formData.code}
+              onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-bold tracking-wider font-mono text-slate-900 uppercase focus:ring-2 focus:ring-slate-900 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Mô Tả Mã Ưu Đãi</label>
+            <input
+              type="text"
+              placeholder="Giảm 50.000đ cho đơn hàng từ 300.000đ..."
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Loại Giảm Giá</label>
+              <select
+                value={formData.discountType}
+                onChange={(e) => setFormData({ ...formData, discountType: e.target.value })}
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none bg-white"
               >
-                ✕
-              </button>
+                <option value="fixed">Số tiền VNĐ (Cố định)</option>
+                <option value="percent">Phần trăm % (Tỷ lệ)</option>
+              </select>
             </div>
 
-            {/* Modal Form */}
-            <form onSubmit={handleSubmitForm} className="p-6 space-y-4">
-              
-              {/* Code */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Mã Voucher (Coupon Code) *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="VD: GIRLSTYLE50K, SUMMER20..."
-                  value={formData.code}
-                  onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase() })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-bold tracking-wider font-mono text-slate-900 uppercase focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                />
-              </div>
-
-              {/* Description */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Mô Tả Mã Ưu Đãi</label>
-                <input
-                  type="text"
-                  placeholder="Giảm 50.000đ cho đơn hàng từ 300.000đ..."
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                />
-              </div>
-
-              {/* Discount Type & Value */}
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Loại Giảm Giá</label>
-                  <select
-                    value={formData.discountType}
-                    onChange={(e) => setFormData({ ...formData, discountType: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none bg-white"
-                  >
-                    <option value="fixed">Số tiền VNĐ (Cố định)</option>
-                    <option value="percent">Phần trăm % (Tỷ lệ)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Giá Trị Giảm *</label>
-                  <input
-                    type="number"
-                    required
-                    min={1}
-                    value={formData.discountValue}
-                    onChange={(e) => setFormData({ ...formData, discountValue: Number(e.target.value) })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Min Order & Max Discount */}
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Đơn Hàng Tối Thiểu (VNĐ)</label>
-                  <input
-                    type="number"
-                    min={0}
-                    step={10000}
-                    value={formData.minOrderValue}
-                    onChange={(e) => setFormData({ ...formData, minOrderValue: Number(e.target.value) })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Giảm Tối Đa (Dành cho %)</label>
-                  <input
-                    type="number"
-                    min={0}
-                    step={10000}
-                    value={formData.maxDiscount}
-                    onChange={(e) => setFormData({ ...formData, maxDiscount: Number(e.target.value) })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Expiry Date */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Ngày Hết Hạn</label>
-                <input
-                  type="date"
-                  value={formData.validUntil}
-                  onChange={(e) => setFormData({ ...formData, validUntil: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                />
-              </div>
-
-              {/* Active Toggle */}
-              <div className="pt-2 flex items-center justify-between">
-                <label className="text-xs font-bold text-slate-700">Kích Hoạt Sử Dụng Ngay</label>
-                <button
-                  type="button"
-                  onClick={() => setFormData({ ...formData, active: !formData.active })}
-                  className={`w-12 h-6 rounded-full transition-colors p-0.5 flex items-center ${
-                    formData.active ? 'bg-emerald-600 justify-end' : 'bg-slate-300 justify-start'
-                  }`}
-                >
-                  <span className="w-5 h-5 rounded-full bg-white shadow-md"></span>
-                </button>
-              </div>
-
-              {/* Modal Actions */}
-              <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-slate-200"
-                >
-                  Hủy Bỏ
-                </button>
-
-                <button
-                  type="submit"
-                  className="flex-1 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow transition-all"
-                >
-                  {editingVoucher ? 'Lưu Thay Đổi' : 'Tạo Voucher Mới'}
-                </button>
-              </div>
-
-            </form>
-
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Giá Trị Giảm *</label>
+              <input
+                type="number"
+                required
+                min={1}
+                value={formData.discountValue}
+                onChange={(e) => setFormData({ ...formData, discountValue: Number(e.target.value) })}
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
+              />
+            </div>
           </div>
-        </div>
-      )}
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Đơn Hàng Tối Thiểu (VNĐ)</label>
+              <input
+                type="number"
+                min={0}
+                step={10000}
+                value={formData.minOrderValue}
+                onChange={(e) => setFormData({ ...formData, minOrderValue: Number(e.target.value) })}
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Giảm Tối Đa (Dành cho %)</label>
+              <input
+                type="number"
+                min={0}
+                step={10000}
+                value={formData.maxDiscount}
+                onChange={(e) => setFormData({ ...formData, maxDiscount: Number(e.target.value) })}
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Ngày Hết Hạn</label>
+            <input
+              type="date"
+              value={formData.validUntil}
+              onChange={(e) => setFormData({ ...formData, validUntil: e.target.value })}
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-slate-900 focus:outline-none"
+            />
+          </div>
+
+          <div className="pt-2 flex items-center justify-between">
+            <label className="text-xs font-bold text-slate-700">Kích Hoạt Sử Dụng Ngay</label>
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, active: !formData.active })}
+              className={`w-12 h-6 rounded-full transition-colors p-0.5 flex items-center ${
+                formData.active ? 'bg-emerald-600 justify-end' : 'bg-slate-300 justify-start'
+              }`}
+            >
+              <span className="w-5 h-5 rounded-full bg-white shadow-md"></span>
+            </button>
+          </div>
+
+          <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(false)}
+              className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-slate-200"
+            >
+              Hủy Bỏ
+            </button>
+
+            <button
+              type="submit"
+              className="flex-1 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow transition-all"
+            >
+              {editingVoucher ? 'Lưu Thay Đổi' : 'Tạo Voucher Mới'}
+            </button>
+          </div>
+        </form>
+      </AdminModal>
 
     </div>
   );
