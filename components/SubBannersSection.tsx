@@ -33,33 +33,24 @@ export default function SubBannersSection() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-30">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 relative z-30">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* LEFT SUB-BANNER: BIG SALE */}
         <Link
           href={banner1.linkUrl || '/products?isHot=true'}
-          className="group relative bg-[#f8f8f8] rounded-3xl p-6 sm:p-8 border-2 border-[#EDE8E2] shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between items-center text-center group"
+          className="group relative bg-slate-900 rounded-3xl p-3 sm:p-4 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center items-center text-center group min-h-[200px]"
         >
           {banner1.imageUrl ? (
             <img
               src={banner1.imageUrl}
               alt={banner1.title}
-              className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full max-h-[300px] object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <>
+            <div className="p-4 space-y-2">
               {/* Background Decorative Dots & Stars */}
-              <div className="absolute top-3 left-4 text-rose-500 flex gap-1 opacity-60">
-                <span className="text-xs">★</span>
-                <span className="text-sm">★</span>
-              </div>
-              <div className="absolute bottom-3 right-4 text-black flex gap-1 opacity-40">
-                <span className="text-xs">★</span>
-                <span className="text-sm">★</span>
-              </div>
-
-              <div className="w-full max-w-sm space-y-2 border-2 border-black p-3 bg-white rounded-2xl shadow-md group-hover:scale-105 transition-transform duration-500">
+              <div className="w-full max-w-sm space-y-2 border-2 border-white p-3 bg-white rounded-2xl shadow-md group-hover:scale-105 transition-transform duration-500">
                 {/* Top Red Header */}
                 <div className="bg-[#C21A27] text-white py-3 px-4 rounded-xl shadow">
                   <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-wider font-sans">
@@ -76,24 +67,24 @@ export default function SubBannersSection() {
               </div>
 
               <div className="mt-4 flex items-center justify-center gap-2">
-                <span className="text-[11px] font-black text-black uppercase tracking-widest border-t-2 border-black pt-1">
+                <span className="text-[11px] font-black text-white uppercase tracking-widest border-t-2 border-white pt-1">
                   {banner1.subtitle || 'ONLY STORE & ONLINE'}
                 </span>
               </div>
-            </>
+            </div>
           )}
         </Link>
 
         {/* RIGHT SUB-BANNER: FREESHIP */}
         <Link
           href={banner2.linkUrl || '/products'}
-          className="group relative bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#EDE8E2] shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex items-center justify-center text-center"
+          className="group relative bg-slate-900 rounded-3xl p-3 sm:p-4 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex items-center justify-center text-center min-h-[200px]"
         >
           {banner2.imageUrl ? (
             <img
               src={banner2.imageUrl}
               alt={banner2.title}
-              className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full max-h-[300px] object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
             <div className="relative w-full max-w-sm py-8 px-6 bg-gradient-to-r from-[#C21A27] via-[#b21622] to-[#C21A27] rounded-3xl shadow-xl border-4 border-black group-hover:scale-105 transition-transform duration-500 flex flex-col items-center justify-center text-white space-y-2">

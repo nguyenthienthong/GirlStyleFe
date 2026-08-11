@@ -88,21 +88,21 @@ export default function HomePage() {
   return (
     <div className="space-y-16 pb-16 bg-white">
       
-      {/* 1. HERO BANNER SLIDE - STRICTLY ONLY HERO_SLIDE BANNERS */}
-      <section className="relative w-full h-[480px] sm:h-[620px] md:h-[720px] lg:h-[780px] bg-[#EDE8E2] overflow-hidden group">
+      {/* 1. HERO BANNER SLIDE - STRICTLY FULL IMAGE PRESERVATION */}
+      <section className="relative w-full bg-slate-950 overflow-hidden group">
         
         {/* Sliding Banner Track */}
         <div
-          className="flex w-full h-full transition-transform duration-700 ease-out"
+          className="flex w-full transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${activeBannerIndex * 100}%)` }}
         >
           {displayBanners.map((banner, idx) => (
-            <div key={banner._id || idx} className="w-full h-full shrink-0 relative">
-              <Link href={banner.linkUrl || '/products'} className="block w-full h-full">
+            <div key={banner._id || idx} className="w-full shrink-0 relative flex items-center justify-center min-h-[300px] sm:min-h-[450px] md:min-h-[550px] lg:min-h-[650px] max-h-[780px] bg-slate-950">
+              <Link href={banner.linkUrl || '/products'} className="block w-full h-full flex items-center justify-center">
                 <img
                   src={banner.imageUrl}
                   alt={banner.title || 'Hero Banner'}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full max-h-[780px] object-contain mx-auto"
                 />
               </Link>
             </div>
@@ -114,7 +114,7 @@ export default function HomePage() {
           <>
             <button
               onClick={() => setActiveBannerIndex((prev) => (prev === 0 ? displayBanners.length - 1 : prev - 1))}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 hover:bg-white text-black shadow-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-20"
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-black shadow-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-20"
               title="Banner trước"
             >
               <ChevronLeft className="w-6 h-6 stroke-[3px]" />
@@ -122,7 +122,7 @@ export default function HomePage() {
 
             <button
               onClick={() => setActiveBannerIndex((prev) => (prev + 1) % displayBanners.length)}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 hover:bg-white text-black shadow-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-20"
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-black shadow-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-20"
               title="Banner kế tiếp"
             >
               <ChevronRight className="w-6 h-6 stroke-[3px]" />
@@ -132,7 +132,7 @@ export default function HomePage() {
 
         {/* Slide Indicator Dots */}
         {displayBanners.length > 1 && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20 bg-black/30 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
             {displayBanners.map((_, idx) => (
               <button
                 key={idx}
