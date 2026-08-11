@@ -255,20 +255,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         />
       )}
 
-      {/* ADMIN SIDEBAR (Desktop Fixed & Mobile Slide Drawer) */}
+      {/* ADMIN SIDEBAR (Fixed Height 100vh with Always Visible Pinned Bottom Controls) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-xs border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-xs border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:h-screen md:sticky md:top-0 ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="space-y-4 overflow-y-auto pr-1">
-          {/* Header Brand */}
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div className="flex items-center gap-3">
-              <Link href="/admin" className="flex items-center gap-2">
-                <img src="/logo.png?v=999" alt="GIRLSTYLE" className="h-9 md:h-11 w-auto object-contain" />
-              </Link>
-            </div>
+        {/* Top Header & Logged User Badge (Pinned Top, No Scroll) */}
+        <div className="shrink-0 space-y-3 pb-2 border-b border-slate-100">
+          <div className="flex items-center justify-between">
+            <Link href="/admin" className="flex items-center gap-2">
+              <img src="/logo.png?v=999" alt="GIRLSTYLE" className="h-9 md:h-11 w-auto object-contain" />
+            </Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-1 text-slate-400 hover:text-slate-900 md:hidden"
@@ -277,14 +275,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </button>
           </div>
 
-          {/* Logged user badge */}
-          <div className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
-            <div className="flex items-center gap-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-black flex items-center justify-center shrink-0">
+          <div className="p-2 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-2 overflow-hidden">
+              <div className="w-7 h-7 rounded-full bg-slate-900 text-white font-black text-xs flex items-center justify-center shrink-0">
                 {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : 'A'}
               </div>
               <div className="overflow-hidden">
-                <p className="font-bold text-slate-900 truncate">{currentUser?.name || 'Quản trị viên'}</p>
+                <p className="font-bold text-slate-900 truncate text-[11px] leading-tight">{currentUser?.name || 'Quản trị viên'}</p>
                 <p className="text-[10px] text-slate-500 font-semibold capitalize flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3 text-slate-700" />
                   {currentUser?.role === 'admin' ? 'Master Admin' : currentUser?.canWrite ? 'Biên Tập Viên' : 'Nhân Viên'}
@@ -294,15 +291,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
             <button
               onClick={handleLogout}
-              className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-900 text-slate-600 hover:text-white transition-colors shrink-0"
+              className="p-1 rounded-lg bg-slate-100 hover:bg-slate-900 text-slate-600 hover:text-white transition-colors shrink-0"
               title="Đăng xuất khỏi Admin"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5" />
             </button>
           </div>
+        </div>
 
-          {/* Clean Frameless Minimal Grouped Accordion Navigation */}
-          <nav className="space-y-4 pt-2">
+        {/* Scrollable Middle Navigation Menu ONLY */}
+        <div className="flex-1 overflow-y-auto py-2 space-y-4 pr-1 scrollbar-thin">
+          <nav className="space-y-3">
             {navGroups.map((group) => {
               const GroupIcon = group.groupIcon;
               const isExpanded = expandedGroups[group.groupId];
@@ -310,7 +309,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
               return (
                 <div key={group.groupId} className="space-y-1">
-                  {/* Clean Frameless Parent Header Button */}
+                  {/* Parent Group Header Button */}
                   <button
                     onClick={() => toggleGroup(group.groupId)}
                     className={`w-full flex items-center justify-between py-1.5 px-2 text-xs font-bold transition-all rounded-xl hover:bg-slate-100 ${
@@ -329,7 +328,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     />
                   </button>
 
-                  {/* Clean Indented Child Items Dropdown */}
+                  {/* Indented Child Items Dropdown */}
                   {isExpanded && (
                     <div className="ml-3.5 pl-3 border-l-2 border-slate-200/70 space-y-1 py-0.5 animate-in fade-in slide-in-from-top-1 duration-150">
                       {group.items.map((item) => {
@@ -360,19 +359,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </nav>
         </div>
 
-        <div className="pt-3 border-t border-slate-200 space-y-2 text-xs font-bold shrink-0">
+        {/* Fixed Pinned Bottom Controls (ALWAYS Visible Without Scrolling) */}
+        <div className="pt-3 border-t border-slate-200 space-y-2 text-xs font-bold shrink-0 bg-white">
           <button
             onClick={handleLogout}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-900 hover:text-white rounded-xl transition-colors font-bold uppercase text-[11px]"
           >
-            <LogOut className="w-4 h-4" /> Đăng Xuất Admin
+            <LogOut className="w-4 h-4 text-rose-500" /> Đăng Xuất Admin
           </button>
 
           <Link
             href="/"
-            className="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 transition-colors py-1.5 text-center text-xs"
+            className="flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 transition-colors py-1.5 text-center text-xs font-bold"
           >
-            <ArrowLeft className="w-4 h-4" /> Quay lại Website
+            <ArrowLeft className="w-4 h-4 text-slate-500" /> Quay lại Website
           </Link>
         </div>
       </aside>
