@@ -7,9 +7,9 @@ export const metadata = {
   title: 'GirlStyle Fashion | Thời Trang Nữ Trẻ Trung & Tôn Dáng',
   description: 'Thương hiệu thời trang nữ cao cấp: Đầm lụa đi tiệc, áo voan công sở, set tweed tiểu thư. Mua sắm dễ dàng, thanh toán VietQR tự động.',
   icons: {
-    icon: '/favicon.png?v=4',
-    shortcut: '/favicon.png?v=4',
-    apple: '/apple-icon.png?v=4',
+    icon: '/favicon.png?v=999',
+    shortcut: '/favicon.png?v=999',
+    apple: '/apple-icon.png?v=999',
   },
 };
 

@@ -182,7 +182,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div className="flex items-center gap-3">
               <Link href="/admin" className="flex items-center gap-2">
-                <img src="/logo.png?v=4" alt="GIRLSTYLE" className="h-9 md:h-11 w-auto object-contain" />
+                <img src="/logo.png?v=999" alt="GIRLSTYLE" className="h-9 md:h-11 w-auto object-contain" />
               </Link>
             </div>
             <button
