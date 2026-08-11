@@ -209,7 +209,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const currentPageTitle = allNavItems.find((n) => n.href === pathname)?.label || 'Bảng Điều Khiển';
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row relative overflow-x-hidden">
+    <div className="h-screen w-screen bg-slate-50 flex overflow-hidden relative">
       {/* Real-time Order Toast Banner */}
       {newOrderToast && (
         <div className="fixed top-5 right-5 z-50 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border-2 border-rose-500 max-w-sm animate-in slide-in-from-top-5 duration-300">
@@ -255,9 +255,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         />
       )}
 
-      {/* ADMIN SIDEBAR (Fixed Height 100vh with Always Visible Pinned Bottom Controls) */}
+      {/* ADMIN SIDEBAR (Fixed 100vh Height on Desktop, Completely Independent Scroll) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-xs border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:h-screen md:sticky md:top-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-xs border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:h-screen shrink-0 ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
@@ -377,10 +377,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
-      {/* Main Admin Body Area with Top Notification Header Bar */}
-      <div className="flex-1 flex flex-col min-h-screen bg-slate-50 w-full overflow-x-hidden">
+      {/* MAIN CONTENT AREA - SCROLLS INDEPENDENTLY ON THE RIGHT */}
+      <div className="flex-1 flex flex-col h-screen overflow-y-auto bg-slate-50 w-full">
         {/* Top Header Bar (Responsive with Hamburger Menu for Mobile) */}
-        <header className="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-xs sticky top-0 z-30">
+        <header className="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-xs sticky top-0 z-30 shrink-0">
           <div className="flex items-center gap-3">
             {/* Hamburger Button on Mobile */}
             <button
@@ -500,7 +500,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Main Children */}
-        <main className="flex-1 p-4 md:p-8 overflow-y-auto bg-slate-50 text-slate-900">{children}</main>
+        <main className="flex-1 p-4 md:p-8 bg-slate-50 text-slate-900">{children}</main>
       </div>
     </div>
   );
