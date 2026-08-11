@@ -24,7 +24,6 @@ import {
   Mail,
   Menu,
   ChevronDown,
-  ChevronRight,
   TrendingUp,
   Store,
   Megaphone,
@@ -258,7 +257,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* ADMIN SIDEBAR (Desktop Fixed & Mobile Slide Drawer) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-sm border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white text-slate-900 p-4 flex flex-col justify-between shadow-xl md:shadow-xs border-r border-slate-200 transition-transform duration-300 ease-in-out md:static md:w-64 md:translate-x-0 ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -302,46 +301,37 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </button>
           </div>
 
-          {/* Multi-Level Grouped Navigation Accordion */}
-          <nav className="space-y-3 pt-1">
+          {/* Clean Frameless Minimal Grouped Accordion Navigation */}
+          <nav className="space-y-4 pt-2">
             {navGroups.map((group) => {
               const GroupIcon = group.groupIcon;
               const isExpanded = expandedGroups[group.groupId];
               const hasActiveChild = group.items.some((item) => item.href === pathname);
 
               return (
-                <div key={group.groupId} className="rounded-2xl border border-slate-100 overflow-hidden bg-slate-50/50">
-                  {/* Parent Group Header Button */}
+                <div key={group.groupId} className="space-y-1">
+                  {/* Clean Frameless Parent Header Button */}
                   <button
                     onClick={() => toggleGroup(group.groupId)}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-black transition-all ${
-                      hasActiveChild ? 'bg-slate-900 text-white shadow-xs' : 'bg-slate-100/80 hover:bg-slate-200 text-slate-800'
+                    className={`w-full flex items-center justify-between py-1.5 px-2 text-xs font-bold transition-all rounded-xl hover:bg-slate-100 ${
+                      hasActiveChild ? 'text-slate-900 font-black' : 'text-slate-500 hover:text-slate-900'
                     }`}
                   >
                     <div className="flex items-center gap-2 overflow-hidden">
-                      <GroupIcon className={`w-4 h-4 shrink-0 ${hasActiveChild ? 'text-rose-400' : 'text-slate-600'}`} />
-                      <span className="truncate uppercase tracking-wider text-[11px]">{group.groupTitle}</span>
+                      <GroupIcon className={`w-4 h-4 shrink-0 ${hasActiveChild ? 'text-rose-600' : 'text-slate-400'}`} />
+                      <span className="truncate uppercase tracking-wider text-[11px] font-black">{group.groupTitle}</span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <span
-                        className={`px-1.5 py-0.5 rounded-full text-[10px] font-extrabold ${
-                          hasActiveChild ? 'bg-rose-500 text-white' : 'bg-slate-200 text-slate-700'
-                        }`}
-                      >
-                        {group.items.length}
-                      </span>
-                      {isExpanded ? (
-                        <ChevronDown className="w-4 h-4 transition-transform duration-200" />
-                      ) : (
-                        <ChevronRight className="w-4 h-4 transition-transform duration-200" />
-                      )}
-                    </div>
+                    <ChevronDown
+                      className={`w-4 h-4 shrink-0 text-slate-400 transition-transform duration-200 ${
+                        isExpanded ? 'rotate-0 text-slate-700' : '-rotate-90'
+                      }`}
+                    />
                   </button>
 
-                  {/* Child Items Dropdown List */}
+                  {/* Clean Indented Child Items Dropdown */}
                   {isExpanded && (
-                    <div className="p-1.5 space-y-1 bg-white border-t border-slate-100 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <div className="ml-3.5 pl-3 border-l-2 border-slate-200/70 space-y-1 py-0.5 animate-in fade-in slide-in-from-top-1 duration-150">
                       {group.items.map((item) => {
                         const Icon = item.icon;
                         const isActive = pathname === item.href;
@@ -353,11 +343,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             onClick={() => setIsMobileMenuOpen(false)}
                             className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs transition-all ${
                               isActive
-                                ? 'bg-rose-600 text-white font-black shadow-xs pl-4'
-                                : 'hover:bg-slate-100 text-slate-700 hover:text-slate-900 font-bold pl-3'
+                                ? 'bg-slate-900 text-white font-black shadow-xs'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold'
                             }`}
                           >
-                            <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                            <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                             <span className="truncate">{item.label}</span>
                           </Link>
                         );
