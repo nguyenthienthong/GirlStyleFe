@@ -32,6 +32,50 @@ import {
 } from 'lucide-react';
 import { fetchApi } from '../../lib/api';
 
+// Multi-Level Grouped Navigation Menu Data Structure
+const navGroups = [
+  {
+    groupTitle: 'Báo Cáo & Đơn Hàng',
+    groupId: 'sales',
+    groupIcon: TrendingUp,
+    items: [
+      { label: 'Tổng Quan Báo Cáo', href: '/admin', icon: LayoutDashboard },
+      { label: 'Quản Lý Đơn Hàng', href: '/admin/orders', icon: ShoppingBag },
+      { label: 'Nhật Ký & Audit Logs', href: '/admin/logs', icon: ShieldCheck },
+    ],
+  },
+  {
+    groupTitle: 'Sản Phẩm & Nội Dung',
+    groupId: 'catalog',
+    groupIcon: Store,
+    items: [
+      { label: 'Sản Phẩm & Tồn Kho', href: '/admin/products', icon: Package },
+      { label: 'Bộ Phối Mix & Match', href: '/admin/lookbooks', icon: Layers },
+      { label: 'CMS Banners & Popup', href: '/admin/banners', icon: Image },
+    ],
+  },
+  {
+    groupTitle: 'Marketing & Khách Hàng',
+    groupId: 'marketing',
+    groupIcon: Megaphone,
+    items: [
+      { label: 'Mã Giảm Giá Voucher', href: '/admin/vouchers', icon: Ticket },
+      { label: 'Đăng Bài Facebook 2 Chiều', href: '/admin/facebook', icon: ExternalLink },
+      { label: 'Hòm Thư Khách Hàng', href: '/admin/feedback', icon: MessageSquare },
+      { label: 'Trợ Lý Virtual AI Copilot', href: '/admin/ai-assistant', icon: Bot },
+    ],
+  },
+  {
+    groupTitle: 'Hệ Thống & Cài Đặt',
+    groupId: 'system',
+    groupIcon: Sliders,
+    items: [
+      { label: 'Quản Lý Quyền & User', href: '/admin/users', icon: Users },
+      { label: 'Đồng Bộ KiotViet & Cài Đặt', href: '/admin/settings', icon: Settings },
+    ],
+  },
+];
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -160,50 +204,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </div>
     );
   }
-
-  // Multi-level Grouped Navigation Menu
-  const navGroups = [
-    {
-      groupTitle: 'Báo Cáo & Đơn Hàng',
-      groupId: 'sales',
-      groupIcon: TrendingUp,
-      items: [
-        { label: 'Tổng Quan Báo Cáo', href: '/admin', icon: LayoutDashboard },
-        { label: 'Quản Lý Đơn Hàng', href: '/admin/orders', icon: ShoppingBag },
-        { label: 'Nhật Ký & Audit Logs', href: '/admin/logs', icon: ShieldCheck },
-      ],
-    },
-    {
-      groupTitle: 'Sản Phẩm & Nội Dung',
-      groupId: 'catalog',
-      groupIcon: Store,
-      items: [
-        { label: 'Sản Phẩm & Tồn Kho', href: '/admin/products', icon: Package },
-        { label: 'Bộ Phối Mix & Match', href: '/admin/lookbooks', icon: Layers },
-        { label: 'CMS Banners & Popup', href: '/admin/banners', icon: Image },
-      ],
-    },
-    {
-      groupTitle: 'Marketing & Khách Hàng',
-      groupId: 'marketing',
-      groupIcon: Megaphone,
-      items: [
-        { label: 'Mã Giảm Giá Voucher', href: '/admin/vouchers', icon: Ticket },
-        { label: 'Đăng Bài Facebook 2 Chiều', href: '/admin/facebook', icon: ExternalLink },
-        { label: 'Hòm Thư Khách Hàng', href: '/admin/feedback', icon: MessageSquare },
-        { label: 'Trợ Lý Virtual AI Copilot', href: '/admin/ai-assistant', icon: Bot },
-      ],
-    },
-    {
-      groupTitle: 'Hệ Thống & Cài Đặt',
-      groupId: 'system',
-      groupIcon: Sliders,
-      items: [
-        { label: 'Quản Lý Quyền & User', href: '/admin/users', icon: Users },
-        { label: 'Đồng Bộ KiotViet & Cài Đặt', href: '/admin/settings', icon: Settings },
-      ],
-    },
-  ];
 
   // Helper to find current page label
   const allNavItems = navGroups.flatMap((g) => g.items);
