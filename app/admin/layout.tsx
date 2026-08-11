@@ -118,6 +118,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Quản Lý Đơn Hàng', href: '/admin/orders', icon: ShoppingBag },
     { label: 'Sản Phẩm & Tồn Kho', href: '/admin/products', icon: Package },
     { label: 'Bộ Phối Mix & Match', href: '/admin/lookbooks', icon: Layers },
+    { label: 'Nhật Ký & Audit Logs', href: '/admin/logs', icon: ShieldCheck },
+    { label: 'Đăng Bài Facebook 2 Chiều', href: '/admin/facebook', icon: ExternalLink },
     { label: 'Quản Lý Quyền & User', href: '/admin/users', icon: Users },
     { label: 'Mã Giảm Giá Voucher', href: '/admin/vouchers', icon: Ticket },
     { label: 'Hòm Thư Khách Hàng', href: '/admin/feedback', icon: MessageSquare },

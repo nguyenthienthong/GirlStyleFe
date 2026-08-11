@@ -1,0 +1,1578 @@
+{
+  "categories": [
+    {
+      "_id": "cat1",
+      "name": "Váy / Đầm",
+      "slug": "vay-dam",
+      "description": "Đầm xòe, đầm lụa, đầm ôm body, váy hoa nhí đi tiệc & dạo phố",
+      "order": 1,
+      "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "_id": "cat2",
+      "name": "Áo Thời Trang",
+      "slug": "ao",
+      "description": "Áo sơ mi công sở, áo kiểu voan lụa, cardigan dệt kim, croptop",
+      "order": 2,
+      "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "_id": "cat3",
+      "name": "Quần & Chân Váy",
+      "slug": "quan-vay",
+      "description": "Quần tây hack dáng, chân váy xếp ly, chân váy chữ A, quần suông",
+      "order": 3,
+      "image": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "_id": "cat4",
+      "name": "Set Đồ Outfit",
+      "slug": "set-do",
+      "description": "Set tweed tiểu thư, set công sở sang trọng, set dạo phố năng động",
+      "order": 4,
+      "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "_id": "cat5",
+      "name": "Áo Khoác & Blazer",
+      "slug": "ao-khoac",
+      "description": "Blazer dáng suông, áo khoác dạ ngắn, cardigan mỏng khoác ngoài",
+      "order": 5,
+      "image": "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "_id": "cat6",
+      "name": "Phụ Kiện & Bag",
+      "slug": "phu-kien",
+      "description": "Túi xách mini, thắt lưng da cao cấp, kính mát thời trang",
+      "order": 6,
+      "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "products": [
+    {
+      "_id": "p_1786360118966",
+      "name": "TEST",
+      "code": "GS-P13",
+      "category": "Váy / Đầm",
+      "price": 550000,
+      "salePrice": 450000,
+      "occasion": "Đi tiệc",
+      "material": "Lụa tơ tằm cao cấp, mềm mịn không nhăn",
+      "description": "Thiết kế thời trang tôn dáng trẻ trung sang trọng.",
+      "isAiGenerated": false,
+      "colors": [
+        {
+          "hex": "#C21A27",
+          "colorName": "Đỏ Đô Brand",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "sizeStocks": [
+            {
+              "size": "S",
+              "stock": 15
+            },
+            {
+              "size": "M",
+              "stock": 20
+            },
+            {
+              "size": "L",
+              "stock": 2
+            },
+            {
+              "size": "XL",
+              "stock": 10
+            }
+          ],
+          "mainImage": "/uploads/banner_1786360108001_801.webp",
+          "images": [
+            "/uploads/banner_1786360108001_801.webp",
+            "/products/silk_cocktail_dress.jpg"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Đen Huyền",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "sizeStocks": [
+            {
+              "size": "S",
+              "stock": 10
+            },
+            {
+              "size": "M",
+              "stock": 15
+            },
+            {
+              "size": "L",
+              "stock": 5
+            },
+            {
+              "size": "XL",
+              "stock": 10
+            }
+          ],
+          "mainImage": "/products/silk_cocktail_dress.jpg",
+          "images": [
+            "/products/silk_cocktail_dress.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "inventory": [
+        {
+          "colorName": "Đỏ Đô Brand",
+          "hex": "#C21A27",
+          "size": "S",
+          "stock": 15
+        },
+        {
+          "colorName": "Đỏ Đô Brand",
+          "hex": "#C21A27",
+          "size": "M",
+          "stock": 20
+        },
+        {
+          "colorName": "Đỏ Đô Brand",
+          "hex": "#C21A27",
+          "size": "L",
+          "stock": 2
+        },
+        {
+          "colorName": "Đỏ Đô Brand",
+          "hex": "#C21A27",
+          "size": "XL",
+          "stock": 10
+        },
+        {
+          "colorName": "Đen Huyền",
+          "hex": "#000000",
+          "size": "S",
+          "stock": 10
+        },
+        {
+          "colorName": "Đen Huyền",
+          "hex": "#000000",
+          "size": "M",
+          "stock": 15
+        },
+        {
+          "colorName": "Đen Huyền",
+          "hex": "#000000",
+          "size": "L",
+          "stock": 5
+        },
+        {
+          "colorName": "Đen Huyền",
+          "hex": "#000000",
+          "size": "XL",
+          "stock": 10
+        }
+      ]
+    },
+    {
+      "_id": "p1",
+      "name": "Đầm Lụa Tơ Tằm Cổ V Tôn Dáng - Rose Silk Dress",
+      "code": "GS-D01",
+      "category": "Váy / Đầm",
+      "price": 650000,
+      "salePrice": 499000,
+      "occasion": "Đi tiệc",
+      "material": "Lụa tơ tằm cao cấp, mềm mịn không nhăn",
+      "careGuide": "Giặt tay nhẹ nhàng bằng sữa tắm hoặc dầu gội, phơi nơi râm mát.",
+      "sizeChartType": "dress",
+      "isHot": true,
+      "isNewArrival": true,
+      "isAiGenerated": true,
+      "colors": [
+        {
+          "colorName": "Đỏ Đô Brand",
+          "hex": "#C21A27",
+          "mainImage": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Trắng Kem",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Đen Huyền",
+          "hex": "#000000",
+          "mainImage": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "inventory": [
+        {
+          "colorName": "Đỏ Đô Brand",
+          "size": "S",
+          "stock": 15
+        },
+        {
+          "colorName": "Đỏ Đô Brand",
+          "size": "M",
+          "stock": 20
+        },
+        {
+          "colorName": "Trắng Kem",
+          "size": "S",
+          "stock": 10
+        },
+        {
+          "colorName": "Đen Huyền",
+          "size": "M",
+          "stock": 8
+        }
+      ],
+      "description": "Thiết kế cổ V quyến rũ kết hợp chất lụa rủ tự nhiên tôn lên nét quyến rũ quý phái cho các nàng trong mọi buổi tiệc."
+    },
+    {
+      "_id": "p2",
+      "name": "Áo Kiểu Voan Tơ Cổ Nơ Hàn Quốc - Pearl Voile Top",
+      "code": "GS-A02",
+      "category": "Áo Thời Trang",
+      "price": 380000,
+      "salePrice": 295000,
+      "occasion": "Công sở",
+      "material": "Voan tơ mỏng nhẹ kèm áo lót hai dây mềm",
+      "careGuide": "Nên cho vào túi giặt nếu giặt máy.",
+      "sizeChartType": "top",
+      "isHot": true,
+      "isNewArrival": true,
+      "isAiGenerated": true,
+      "colors": [
+        {
+          "colorName": "Trắng Ngọc Trai",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Kem Beige",
+          "hex": "#EDE8E2",
+          "mainImage": "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "inventory": [
+        {
+          "colorName": "Trắng Ngọc Trai",
+          "size": "S",
+          "stock": 25
+        },
+        {
+          "colorName": "Trắng Ngọc Trai",
+          "size": "M",
+          "stock": 30
+        },
+        {
+          "colorName": "Kem Beige",
+          "size": "S",
+          "stock": 15
+        }
+      ],
+      "description": "Mẫu áo voan thanh lịch phối nơ thắt duyên dáng, cực xinh khi mix cùng chân váy hoặc quần tây dáng suông."
+    },
+    {
+      "_id": "p3",
+      "name": "Set Tweed Sang Chảnh Tiểu Thư - Luxe Tweed Set",
+      "code": "GS-S03",
+      "category": "Set Đồ Outfit",
+      "price": 890000,
+      "salePrice": 750000,
+      "occasion": "Đi tiệc",
+      "material": "Dạ Tweed dệt sợi ánh kim cao cấp có lót lụa",
+      "sizeChartType": "dress",
+      "isHot": true,
+      "isNewArrival": true,
+      "isAiGenerated": true,
+      "colors": [
+        {
+          "colorName": "Đỏ Ánh Kim",
+          "hex": "#C21A27",
+          "mainImage": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Trắng Ngà Luxe",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "inventory": [
+        {
+          "colorName": "Đỏ Ánh Kim",
+          "size": "S",
+          "stock": 12
+        },
+        {
+          "colorName": "Đỏ Ánh Kim",
+          "size": "M",
+          "stock": 18
+        }
+      ],
+      "description": "Set áo khoác dạ dáng ngắn đi kèm chân váy chữ A kiêu kỳ, mang chuẩn thần thái tiểu thư kiêu sa."
+    },
+    {
+      "_id": "p4",
+      "name": "Đầm Midi Xếp Ly Kèm Thắt Lưng - Soria Pleated Dress",
+      "code": "GS-D04",
+      "category": "Váy / Đầm",
+      "price": 1100000,
+      "salePrice": 890000,
+      "occasion": "Dạo phố",
+      "material": "Kaki chun mềm nhã nhặn, đứng phom tôn dáng",
+      "sizeChartType": "dress",
+      "isHot": true,
+      "isNewArrival": true,
+      "isAiGenerated": true,
+      "colors": [
+        {
+          "colorName": "Trắng Sữa",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Kem Pastel",
+          "hex": "#EDE8E2",
+          "mainImage": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "inventory": [
+        {
+          "colorName": "Trắng Sữa",
+          "size": "S",
+          "stock": 20
+        },
+        {
+          "colorName": "Kem Pastel",
+          "size": "M",
+          "stock": 15
+        }
+      ],
+      "description": "Mẫu đầm midi thắt eo thắt lưng bản nhỏ giúp thon gọn vóc dáng, chất liệu thoáng mát cao cấp."
+    },
+    {
+      "_id": "p5",
+      "name": "Blazer Tay Dài Form Rộng Hàn Quốc - Minimalist Blazer",
+      "code": "GS-B05",
+      "category": "Áo Khoác & Blazer",
+      "price": 720000,
+      "salePrice": 590000,
+      "occasion": "Công sở",
+      "material": "Kaki đứng phom cao cấp có lót lụa",
+      "sizeChartType": "top",
+      "isHot": true,
+      "isNewArrival": true,
+      "isAiGenerated": true,
+      "colors": [
+        {
+          "colorName": "Nâu Mocha",
+          "hex": "#8D6349",
+          "mainImage": "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Đen Classic",
+          "hex": "#000000",
+          "mainImage": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "inventory": [
+        {
+          "colorName": "Nâu Mocha",
+          "size": "S",
+          "stock": 18
+        },
+        {
+          "colorName": "Đen Classic",
+          "size": "M",
+          "stock": 22
+        }
+      ],
+      "description": "Áo khoác Blazer phom rộng khoác ngoài thanh lịch, phối hợp hoàn hảo với áo thun, quần tây hoặc váy ôm."
+    },
+    {
+      "_id": "p6",
+      "name": "Chân Váy Xếp Ly Tennis Dáng Xòe - Pleated Mini Skirt",
+      "code": "GS-V06",
+      "category": "Quần & Chân Váy",
+      "price": 320000,
+      "salePrice": 249000,
+      "occasion": "Dạo phố",
+      "material": "Tuyết mưa cao cấp co giãn nhẹ, có quần bảo hộ bên trong",
+      "sizeChartType": "bottom",
+      "isHot": true,
+      "isNewArrival": false,
+      "colors": [
+        {
+          "colorName": "Trắng Tinh Khôi",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Đen Cá Tính",
+          "hex": "#000000",
+          "mainImage": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "inventory": [
+        {
+          "colorName": "Trắng Tinh Khôi",
+          "size": "S",
+          "stock": 30
+        },
+        {
+          "colorName": "Đen Cá Tính",
+          "size": "M",
+          "stock": 25
+        }
+      ],
+      "description": "Chân váy tennis xếp ly đều đặn kéo dài đôi chân, phù hợp đi chơi, dạo phố hay tập thể thao."
+    },
+    {
+      "_id": "p7",
+      "name": "Quần Tây Suông Cạp Cao Hack Dáng - High Waist Trousers",
+      "code": "GS-Q07",
+      "category": "Quần & Chân Váy",
+      "price": 450000,
+      "salePrice": 360000,
+      "occasion": "Công sở",
+      "material": "Tây đẫn chéo Hàn Quốc không nhăn xù",
+      "sizeChartType": "bottom",
+      "isHot": false,
+      "isNewArrival": true,
+      "colors": [
+        {
+          "colorName": "Đen Tuyệt Đối",
+          "hex": "#000000",
+          "mainImage": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80"
+          ]
+        },
+        {
+          "colorName": "Nâu Tây",
+          "hex": "#8D6349",
+          "mainImage": "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "inventory": [
+        {
+          "colorName": "Đen Tuyệt Đối",
+          "size": "M",
+          "stock": 40
+        },
+        {
+          "colorName": "Nâu Tây",
+          "size": "L",
+          "stock": 20
+        }
+      ],
+      "description": "Thiết kế cạp cao quyến rũ che khuyết điểm bụng dưới, tôn lên chiều cao và sự chỉn chu thanh lịch."
+    },
+    {
+      "_id": "p8",
+      "name": "Set Áo Croptop & Chân Váy Midi Dệt Kim - Knit Summer Set",
+      "code": "GS-S08",
+      "category": "Set Đồ Outfit",
+      "price": 680000,
+      "salePrice": 520000,
+      "occasion": "Du lịch",
+      "material": "Len dệt kim mỏng nhẹ thoáng mát",
+      "sizeChartType": "dress",
+      "isHot": true,
+      "isNewArrival": true,
+      "colors": [
+        {
+          "colorName": "Cam Đất",
+          "hex": "#D97706",
+          "mainImage": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M"
+      ],
+      "inventory": [
+        {
+          "colorName": "Cam Đất",
+          "size": "S",
+          "stock": 14
+        }
+      ],
+      "description": "Set dệt kim mùa hè cực xinh cho những chuyến đi biển hoặc dạo phố nắng thu."
+    },
+    {
+      "_id": "p9",
+      "name": "Đầm Body Hoa Nhí Cúp Ngực - Floral Bodycon Dress",
+      "code": "GS-D09",
+      "category": "Váy / Đầm",
+      "price": 580000,
+      "salePrice": 440000,
+      "occasion": "Hẹn hò",
+      "material": "Chiffon hoa nhí cao cấp mềm mịn",
+      "sizeChartType": "dress",
+      "isHot": true,
+      "isNewArrival": true,
+      "colors": [
+        {
+          "colorName": "Hoa Vàng Nắng",
+          "hex": "#FBBF24",
+          "mainImage": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "inventory": [
+        {
+          "colorName": "Hoa Vàng Nắng",
+          "size": "S",
+          "stock": 18
+        }
+      ],
+      "description": "Đầm hoa nhí dáng ôm quyến rũ cho buổi hẹn hò lãng mạn."
+    },
+    {
+      "_id": "p10",
+      "name": "Áo Sơ Mi Lụa Cổ Đức Thanh Lịch - Royal Silk Shirt",
+      "code": "GS-A10",
+      "category": "Áo Thời Trang",
+      "price": 420000,
+      "salePrice": 349000,
+      "occasion": "Công sở",
+      "material": "Lụa Mango bóng nhẹ sang trọng",
+      "sizeChartType": "top",
+      "isHot": false,
+      "isNewArrival": true,
+      "colors": [
+        {
+          "colorName": "Trắng Kem",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "inventory": [
+        {
+          "colorName": "Trắng Kem",
+          "size": "M",
+          "stock": 35
+        }
+      ],
+      "description": "Sơ mi lụa mềm mượt tôn dáng vẻ chuyên nghiệp của các quý cô công sở."
+    },
+    {
+      "_id": "p11",
+      "name": "Đầm Xòe Công Chúa Voan Tơ Đi Tiệc - Fairy Tale Gown",
+      "code": "GS-D11",
+      "category": "Váy / Đầm",
+      "price": 1350000,
+      "salePrice": 1090000,
+      "occasion": "Đi tiệc",
+      "material": "Voan tơ tằm thêu nơ chìm có lớp lót lụa",
+      "sizeChartType": "dress",
+      "isHot": true,
+      "isNewArrival": true,
+      "colors": [
+        {
+          "colorName": "Hồng Phấn",
+          "hex": "#F472B6",
+          "mainImage": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "inventory": [
+        {
+          "colorName": "Hồng Phấn",
+          "size": "S",
+          "stock": 10
+        }
+      ],
+      "description": "Thiết kế xòe bồng công chúa lộng lẫy dành riêng cho những sự kiện sang trọng."
+    },
+    {
+      "_id": "p12",
+      "name": "Túi Xách Mini Quai Ngọc Trai - Pearl Chain Mini Bag",
+      "code": "GS-PK14",
+      "category": "Phụ Kiện & Bag",
+      "price": 390000,
+      "salePrice": 299000,
+      "occasion": "Đi tiệc",
+      "material": "Da tổng hợp PU cao cấp vân chìm",
+      "sizeChartType": "accessory",
+      "isHot": true,
+      "isNewArrival": true,
+      "colors": [
+        {
+          "colorName": "Trắng Ánh Kim",
+          "hex": "#FFFFFF",
+          "mainImage": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+          "images": [
+            "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80"
+          ]
+        }
+      ],
+      "sizes": [
+        "FreeSize"
+      ],
+      "inventory": [
+        {
+          "colorName": "Trắng Ánh Kim",
+          "size": "FreeSize",
+          "stock": 50
+        }
+      ],
+      "description": "Mẫu túi clutch mini đính quai ngọc traiy kiêu sa điểm nhấn thời thượng cho bộ trang phục."
+    }
+  ],
+  "blogs": [
+    {
+      "_id": "blog1",
+      "title": "Bí Quyết Chọn Đầm Lụa Tơ Tằm Tôn Dáng & Quyến Rũ Cho Quý Cô Tiệc Đêm",
+      "slug": "bi-quyet-chon-dam-lua-to-tam-ton-dang",
+      "category": "Mẹo Phối Đồ & Tiệc Đêm",
+      "author": "Biên Tập Viên Linh Chi",
+      "readTime": "5 min read",
+      "createdAt": "2026-08-07T10:00:00.000Z",
+      "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+      "summary": "Đầm lụa tơ tằm luôn là sự lựa chọn hàng đầu của những quý cô kiêu kỳ trong mọi bữa tiệc. Khám phá ngay 5 mẹo chọn kiểu dáng đầm lụa cổ V và tông màu đỏ đô tôn da nhất 2026.",
+      "content": "Chất liệu lụa tơ tằm cao cấp từ lâu đã trở thành biểu tượng của sự sang trọng, quý phái. Với bề mặt rủ tự nhiên, óng ánh nhẹ dưới ánh đèn tiệc đêm..."
+    },
+    {
+      "_id": "blog2",
+      "title": "Top 3 Áo Kiểu Hàn Quốc Tối Giản Tôn Thần Thái Công Sở Trẻ Trung",
+      "slug": "top-3-ao-kieu-han-quoc-toi-gian-cong-so",
+      "category": "Thời Trang Công Sở",
+      "author": "Biên Tập Viên Linh Chi",
+      "readTime": "4 min read",
+      "createdAt": "2026-08-06T14:30:00.000Z",
+      "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80",
+      "summary": "Không còn sự gò bó của sơ mi trắng truyền thống. Khám phá bộ sưu tập áo voan tơ thắt nơ Hàn Quốc giúp nàng công sở tự tin rạng rỡ...",
+      "content": "Phong cách thời trang công sở hiện đại hướng tới sự thoải mái nhưng vẫn phải chỉn chu và thanh lịch..."
+    },
+    {
+      "_id": "blog3",
+      "title": "Set Đồ Tweed Tiểu Thư: Xu Hướng Thời Trang Sang Chảnh Không Bao Giờ Lỗi Mốt",
+      "slug": "set-do-tweed-tieu-thu-xu-huong-sang-chanh",
+      "category": "Xu Hướng Thời Trang",
+      "author": "Thanh Hằng Style Adviser",
+      "readTime": "6 min read",
+      "createdAt": "2026-08-05T09:15:00.000Z",
+      "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
+      "summary": "Vải Tweed dệt sợi ánh kim mang phong thái quý tộc hoàng gia. Hướng dẫn mix áo khoác dạ Tweed dáng ngắn cùng chân váy chữ A & túi xách...",
+      "content": "Chất liệu vải Tweed dệt sợi ánh kim kiêu sa vốn bắt nguồn từ trang phục hoàng gia Châu Âu..."
+    }
+  ],
+  "banners": [
+    {
+      "_id": "b1",
+      "title": "BỘ SỰ TẬP NỮ THẦN MÙA HÈ 2026",
+      "subtitle": "Rạng rỡ từng khoảnh khắc với các thiết kế đầm lụa cao cấp mới nhất",
+      "imageUrl": "/uploads/banner_1786415974939_765.png",
+      "linkUrl": "/products?category=vay-dam",
+      "order": 1,
+      "type": "hero_slide",
+      "active": true
+    },
+    {
+      "_id": "b2",
+      "title": "ELEGANT OFFICE LOOKBOOK",
+      "subtitle": "Nâng tầm phong cách công sở trẻ trung & cuốn hút",
+      "imageUrl": "/uploads/banner_1786416007055_753.jpg",
+      "linkUrl": "/products?occasion=Công+sở",
+      "order": 2,
+      "type": "hero_slide",
+      "active": true
+    },
+    {
+      "_id": "b_1786416068747",
+      "title": "banner shop",
+      "subtitle": "",
+      "imageUrl": "/uploads/banner_1786416047081_98.jpg",
+      "linkUrl": "/products",
+      "order": 3,
+      "type": "hero_slide",
+      "active": true
+    },
+    {
+      "_id": "b_1786416128012",
+      "title": "BIG SALE UP TO 50%",
+      "subtitle": "ONLY STORE & ONLINE",
+      "imageUrl": "/uploads/banner_1786416125265_504.png",
+      "linkUrl": "/products?isHot=true",
+      "order": 1,
+      "type": "sub_banner",
+      "active": true
+    },
+    {
+      "_id": "b_1786416133609",
+      "title": "BIG SALE UP TO 50%",
+      "subtitle": "ONLY STORE & ONLINE",
+      "imageUrl": "/uploads/banner_1786416132070_355.png",
+      "linkUrl": "/products?isHot=true",
+      "order": 2,
+      "type": "sub_banner",
+      "active": true
+    }
+  ],
+  "users": [
+    {
+      "_id": "u_admin",
+      "name": "Quản Trị Viên Master",
+      "phone": "0900000000",
+      "email": "admin@girlstyle.com",
+      "password": "admin123",
+      "role": "admin",
+      "canWrite": true,
+      "createdAt": "2026-08-01T08:00:00.000Z"
+    },
+    {
+      "_id": "u_sales",
+      "name": "Nguyễn Hoàng Nam (Sales Manager)",
+      "phone": "0977778888",
+      "email": "sales@girlstyle.vn",
+      "password": "sales123",
+      "role": "sales",
+      "canWrite": true,
+      "createdAt": "2026-08-02T09:00:00.000Z"
+    },
+    {
+      "_id": "u_editor",
+      "name": "Biên Tập Viên Linh Chi",
+      "phone": "0911111111",
+      "email": "linhchi.writer@girlstyle.com",
+      "password": "writer123",
+      "role": "content",
+      "canWrite": true,
+      "createdAt": "2026-08-02T10:00:00.000Z"
+    },
+    {
+      "_id": "u_c1",
+      "name": "Nguyễn Thị Ngọc Anh",
+      "phone": "0912345678",
+      "email": "ngocanh@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "45 Lê Lợi, Q.1, TP. Hồ Chí Minh",
+      "createdAt": "2026-08-03T11:20:00.000Z"
+    },
+    {
+      "_id": "u_c2",
+      "name": "Trần Thanh Hằng",
+      "phone": "0909112233",
+      "email": "hangtran@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "128 Phố Huế, Q. Hai Bà Trưng, Hà Nội",
+      "createdAt": "2026-08-04T09:15:00.000Z"
+    },
+    {
+      "_id": "u_c3",
+      "name": "Phạm Hoàng Phương Thảo",
+      "phone": "0934567890",
+      "email": "phuongthao.ng@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "89 Bạch Đằng, Q. Hải Châu, Đà Nẵng",
+      "createdAt": "2026-08-05T14:30:00.000Z"
+    },
+    {
+      "_id": "u_c4",
+      "name": "Đỗ Thị Thu Trang",
+      "phone": "0987654321",
+      "email": "trangdo95@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "12 Nguyễn Trãi, Q.5, TP. Hồ Chí Minh",
+      "createdAt": "2026-08-06T10:10:00.000Z"
+    },
+    {
+      "_id": "u_c5",
+      "name": "Vũ Thị Mai Hương",
+      "phone": "0918273645",
+      "email": "maihuong.vu@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "24 Lạch Tray, Q. Ngô Quyền, Hải Phòng",
+      "createdAt": "2026-08-07T16:45:00.000Z"
+    },
+    {
+      "_id": "u_c6",
+      "name": "Bùi Hoàng Yến",
+      "phone": "0903141592",
+      "email": "yenbui.fashion@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "56 Đường 30/4, Q. Ninh Kiều, Cần Thơ",
+      "createdAt": "2026-08-08T08:50:00.000Z"
+    },
+    {
+      "_id": "u_c7",
+      "name": "Nguyễn Minh Châu",
+      "phone": "0971122334",
+      "email": "minhchau.nguyen@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "202 Nguyễn Đình Chiểu, Q.3, TP. Hồ Chí Minh",
+      "createdAt": "2026-08-08T15:10:00.000Z"
+    },
+    {
+      "_id": "u_c8",
+      "name": "Trịnh Khánh Linh",
+      "phone": "0965432109",
+      "email": "khanhlinh.trinh@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "77 Hoàng Hoa Thám, Ba Đình, Hà Nội",
+      "createdAt": "2026-08-09T11:00:00.000Z"
+    },
+    {
+      "_id": "u_c9",
+      "name": "Võ Thị Kim Ngân",
+      "phone": "0923456789",
+      "email": "nganvo.kim@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "15 Thùy Vân, TP. Vũng Tàu",
+      "createdAt": "2026-08-09T17:20:00.000Z"
+    },
+    {
+      "_id": "u_c10",
+      "name": "Đặng Phương Anh",
+      "phone": "0945678901",
+      "email": "phuonganh.dang@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "canWrite": false,
+      "address": "88 Đại Lộ Bình Dương, TP. Thủ Dầu Một",
+      "createdAt": "2026-08-10T09:30:00.000Z"
+    },
+    {
+      "_id": "u_1786419139148",
+      "name": "test 1",
+      "phone": "0933004342",
+      "email": "",
+      "role": "customer",
+      "canWrite": false,
+      "autoCreated": true,
+      "createdAt": "2026-08-11T03:32:19.148Z"
+    }
+  ],
+  "mixMatchCombos": [
+    {
+      "_id": "mm1",
+      "title": "Combo Mix & Match Streetwear 01",
+      "code": "COMBO-MM01",
+      "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80"
+      ],
+      "items": [
+        {
+          "productId": "p2",
+          "name": "Áo Kiểu Voan Tơ Cổ Nơ Hàn Quốc",
+          "price": 295000,
+          "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=400&q=80",
+          "sizes": [
+            "S",
+            "M"
+          ]
+        },
+        {
+          "productId": "p6",
+          "name": "Chân Váy Xếp Ly Tennis Dáng Xòe",
+          "price": 249000,
+          "image": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=400&q=80",
+          "sizes": [
+            "S",
+            "M"
+          ]
+        }
+      ]
+    }
+  ],
+  "vouchers": [
+    {
+      "_id": "v1",
+      "code": "GIRLSTYLE50K",
+      "description": "Giảm 50k cho đơn hàng từ 300k",
+      "discountType": "fixed",
+      "discountValue": 50000,
+      "minOrderValue": 300000,
+      "validUntil": "2026-12-31",
+      "active": true
+    },
+    {
+      "_id": "v2",
+      "code": "FLASHSALE20",
+      "description": "Giảm 20% tối đa 100k",
+      "discountType": "percent",
+      "discountValue": 20,
+      "minOrderValue": 500000,
+      "maxDiscount": 100000,
+      "validUntil": "2026-12-31",
+      "active": true
+    },
+    {
+      "_id": "v3",
+      "code": "FREESHIP",
+      "description": "Miễn phí giao hàng toàn quốc",
+      "discountType": "fixed",
+      "discountValue": 30000,
+      "minOrderValue": 400000,
+      "validUntil": "2026-12-31",
+      "active": true
+    },
+    {
+      "_id": "v4",
+      "code": "VIPSUMMER100K",
+      "description": "Giảm 100k cho đơn hàng từ 1.000.000đ",
+      "discountType": "fixed",
+      "discountValue": 100000,
+      "minOrderValue": 1000000,
+      "validUntil": "2026-12-31",
+      "active": true
+    },
+    {
+      "_id": "v5",
+      "code": "TIECKIEU15",
+      "description": "Giảm 15% cho trang phục đi tiệc",
+      "discountType": "percent",
+      "discountValue": 15,
+      "minOrderValue": 600000,
+      "maxDiscount": 150000,
+      "validUntil": "2026-12-31",
+      "active": true
+    }
+  ],
+  "orders": [
+    {
+      "_id": "ord_1786419139166",
+      "orderCode": "GS155719",
+      "customerInfo": {
+        "name": "test 1",
+        "phone": "0933004342",
+        "email": "",
+        "address": "45 Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+        "city": "TP. Hồ Chí Minh",
+        "district": "Quận 1",
+        "ward": "Phường Bến Nghé",
+        "note": "",
+        "needVat": false,
+        "supportStaffCode": ""
+      },
+      "items": [
+        {
+          "productId": "fs4",
+          "name": "Đầm Dạ Hội Dài Xẻ Tà LOVINA",
+          "code": "GS-D07",
+          "color": "Standard",
+          "size": "M",
+          "price": 2500000,
+          "quantity": 1,
+          "image": "/products/silk_cocktail_dress.jpg"
+        }
+      ],
+      "totalAmount": 2500000,
+      "discountAmount": 100000,
+      "voucherCode": "FLASHSALE20",
+      "shippingFee": 0,
+      "finalAmount": 2400000,
+      "paymentMethod": "cod",
+      "paymentStatus": "pending",
+      "status": "new",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": "https://img.vietqr.io/image/MBBank-0988889999-compact2.png?amount=2400000&addInfo=GS155719&accountName=GIRLSTYLE%20FASHION%20STORE"
+      },
+      "createdAt": "2026-08-11T03:32:19.166Z"
+    },
+    {
+      "_id": "ord_101",
+      "orderCode": "GS892101",
+      "customerInfo": {
+        "name": "Nguyễn Thị Ngọc Anh",
+        "phone": "0912345678",
+        "email": "ngocanh@gmail.com",
+        "address": "45 Lê Lợi, Q.1, TP. Hồ Chí Minh"
+      },
+      "items": [
+        {
+          "productId": "p1",
+          "name": "Đầm Lụa Tơ Tằm Cổ V Tôn Dáng - Rose Silk Dress",
+          "price": 499000,
+          "quantity": 1,
+          "color": "Đỏ Đô Brand",
+          "size": "M",
+          "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+          "productId": "p3",
+          "name": "Set Tweed Sang Chảnh Tiểu Thư - Luxe Tweed Set",
+          "price": 750000,
+          "quantity": 1,
+          "color": "Đỏ Ánh Kim",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 1249000,
+      "discountAmount": 50000,
+      "voucherCode": "GIRLSTYLE50K",
+      "shippingFee": 0,
+      "finalAmount": 1199000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "completed",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-10T14:20:00.000Z"
+    },
+    {
+      "_id": "ord_102",
+      "orderCode": "GS892102",
+      "customerInfo": {
+        "name": "Phạm Hoàng Phương Thảo",
+        "phone": "0934567890",
+        "email": "phuongthao.ng@gmail.com",
+        "address": "89 Bạch Đằng, Q. Hải Châu, Đà Nẵng"
+      },
+      "items": [
+        {
+          "productId": "p4",
+          "name": "Đầm Midi Xếp Ly Kèm Thắt Lưng - Soria Pleated Dress",
+          "price": 890000,
+          "quantity": 1,
+          "color": "Trắng Sữa",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 890000,
+      "discountAmount": 0,
+      "voucherCode": "",
+      "shippingFee": 30000,
+      "finalAmount": 920000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "completed",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-10T11:15:00.000Z"
+    },
+    {
+      "_id": "ord_103",
+      "orderCode": "GS892103",
+      "customerInfo": {
+        "name": "Trần Thanh Hằng",
+        "phone": "0909112233",
+        "email": "hangtran@gmail.com",
+        "address": "128 Phố Huế, Q. Hai Bà Trưng, Hà Nội"
+      },
+      "items": [
+        {
+          "productId": "p5",
+          "name": "Blazer Tay Dài Form Rộng Hàn Quốc",
+          "price": 590000,
+          "quantity": 1,
+          "color": "Nâu Mocha",
+          "size": "M",
+          "image": "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+          "productId": "p7",
+          "name": "Quần Tây Suông Cạp Cao Hack Dáng",
+          "price": 360000,
+          "quantity": 1,
+          "color": "Nâu Tây",
+          "size": "M",
+          "image": "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 950000,
+      "discountAmount": 50000,
+      "voucherCode": "GIRLSTYLE50K",
+      "shippingFee": 0,
+      "finalAmount": 900000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "shipping",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-10T09:40:00.000Z"
+    },
+    {
+      "_id": "ord_104",
+      "orderCode": "GS892104",
+      "customerInfo": {
+        "name": "Đỗ Thị Thu Trang",
+        "phone": "0987654321",
+        "email": "trangdo95@gmail.com",
+        "address": "12 Nguyễn Trãi, Q.5, TP. Hồ Chí Minh"
+      },
+      "items": [
+        {
+          "productId": "p2",
+          "name": "Áo Kiểu Voan Tơ Cổ Nơ Hàn Quốc",
+          "price": 295000,
+          "quantity": 1,
+          "color": "Trắng Ngọc Trai",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+          "productId": "p6",
+          "name": "Chân Váy Xếp Ly Tennis Dáng Xòe",
+          "price": 249000,
+          "quantity": 1,
+          "color": "Trắng Tinh Khôi",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 544000,
+      "discountAmount": 30000,
+      "voucherCode": "FREESHIP",
+      "shippingFee": 0,
+      "finalAmount": 514000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "packing",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-10T08:10:00.000Z"
+    },
+    {
+      "_id": "ord_105",
+      "orderCode": "GS892105",
+      "customerInfo": {
+        "name": "Vũ Thị Mai Hương",
+        "phone": "0918273645",
+        "email": "maihuong.vu@gmail.com",
+        "address": "24 Lạch Tray, Q. Ngô Quyền, Hải Phòng"
+      },
+      "items": [
+        {
+          "productId": "p11",
+          "name": "Đầm Xòe Công Chúa Voan Tơ Đi Tiệc",
+          "price": 1090000,
+          "quantity": 1,
+          "color": "Hồng Phấn",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+          "productId": "p12",
+          "name": "Túi Xách Mini Quai Ngọc Trai",
+          "price": 299000,
+          "quantity": 1,
+          "color": "Trắng Ánh Kim",
+          "size": "FreeSize",
+          "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 1389000,
+      "discountAmount": 100000,
+      "voucherCode": "VIPSUMMER100K",
+      "shippingFee": 0,
+      "finalAmount": 1289000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "new",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-10T07:30:00.000Z"
+    },
+    {
+      "_id": "ord_106",
+      "orderCode": "GS892106",
+      "customerInfo": {
+        "name": "Bùi Hoàng Yến",
+        "phone": "0903141592",
+        "email": "yenbui.fashion@gmail.com",
+        "address": "56 Đường 30/4, Q. Ninh Kiều, Cần Thơ"
+      },
+      "items": [
+        {
+          "productId": "p8",
+          "name": "Set Áo Croptop & Chân Váy Midi Dệt Kim",
+          "price": 520000,
+          "quantity": 1,
+          "color": "Cam Đất",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 520000,
+      "discountAmount": 0,
+      "voucherCode": "",
+      "shippingFee": 30000,
+      "finalAmount": 550000,
+      "paymentMethod": "COD",
+      "paymentStatus": "pending",
+      "status": "new",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-09T20:15:00.000Z"
+    },
+    {
+      "_id": "ord_107",
+      "orderCode": "GS892107",
+      "customerInfo": {
+        "name": "Nguyễn Minh Châu",
+        "phone": "0971122334",
+        "email": "minhchau.nguyen@gmail.com",
+        "address": "202 Nguyễn Đình Chiểu, Q.3, TP. Hồ Chí Minh"
+      },
+      "items": [
+        {
+          "productId": "p1",
+          "name": "Đầm Lụa Tơ Tằm Cổ V Tôn Dáng",
+          "price": 499000,
+          "quantity": 1,
+          "color": "Trắng Kem",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+          "productId": "p9",
+          "name": "Đầm Body Hoa Nhí Cúp Ngực",
+          "price": 440000,
+          "quantity": 1,
+          "color": "Hoa Vàng Nắng",
+          "size": "S",
+          "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 939000,
+      "discountAmount": 50000,
+      "voucherCode": "GIRLSTYLE50K",
+      "shippingFee": 0,
+      "finalAmount": 889000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "completed",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-09T16:00:00.000Z"
+    },
+    {
+      "_id": "ord_108",
+      "orderCode": "GS892108",
+      "customerInfo": {
+        "name": "Trịnh Khánh Linh",
+        "phone": "0965432109",
+        "email": "khanhlinh.trinh@gmail.com",
+        "address": "77 Hoàng Hoa Thám, Ba Đình, Hà Nội"
+      },
+      "items": [
+        {
+          "productId": "p3",
+          "name": "Set Tweed Sang Chảnh Tiểu Thư",
+          "price": 750000,
+          "quantity": 2,
+          "color": "Đỏ Ánh Kim",
+          "size": "M",
+          "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "totalAmount": 1500000,
+      "discountAmount": 100000,
+      "voucherCode": "VIPSUMMER100K",
+      "shippingFee": 0,
+      "finalAmount": 1400000,
+      "paymentMethod": "VietQR",
+      "paymentStatus": "paid",
+      "status": "completed",
+      "vietqrRef": {
+        "bankId": "MBBank",
+        "accountNo": "0988889999",
+        "accountName": "GIRLSTYLE FASHION STORE",
+        "qrUrl": ""
+      },
+      "createdAt": "2026-08-08T18:30:00.000Z"
+    }
+  ],
+  "feedbacks": [
+    {
+      "_id": "fb_1",
+      "customerName": "Trần Thanh Hằng",
+      "phone": "0909112233",
+      "email": "hangtran@gmail.com",
+      "type": "gop_y",
+      "message": "Shop có định mở thêm chi nhánh showroom ở Hà Nội để khách tiện ghé qua thử mẫu mới không ạ?",
+      "status": "resolved",
+      "adminReply": "Dạ chào nàng! GirlStyle dự kiến sẽ khai trương Showroom mới tại Quận Ba Đình, Hà Nội trong quý 4 này ạ. Cảm ơn nàng đã yêu mến!",
+      "createdAt": "2026-08-09T10:00:00.000Z"
+    },
+    {
+      "_id": "fb_2",
+      "customerName": "Nguyễn Thị Ngọc Anh",
+      "phone": "0912345678",
+      "email": "ngocanh@gmail.com",
+      "type": "khen_ngoi",
+      "message": "Đầm lụa Rose Silk mặc êm da và chuẩn phom lắm shop ơi, mặc đi tiệc ai cũng khen hết trơn.",
+      "status": "resolved",
+      "adminReply": "Dạ cảm ơn nàng yêu nhiều nhé! Chúc nàng luôn rạng rỡ và xinh đẹp cùng GirlStyle ạ ✨",
+      "createdAt": "2026-08-09T14:30:00.000Z"
+    },
+    {
+      "_id": "fb_3",
+      "customerName": "Đỗ Thị Thu Trang",
+      "phone": "0987654321",
+      "email": "trangdo95@gmail.com",
+      "type": "gop_y",
+      "message": "Nên thêm tính năng Chat Zalo trực tiếp để tư vấn phối đồ theo chiều cao cân nặng ạ.",
+      "status": "resolved",
+      "adminReply": "Dạ GirlStyle đã tích hợp sẵn widget Zalo 24/7 ở góc phải màn hình rồi ạ, nàng bấm vào là chat trực tiếp được ngay nhé!",
+      "createdAt": "2026-08-08T11:20:00.000Z"
+    },
+    {
+      "_id": "fb_4",
+      "customerName": "Phạm Hoàng Phương Thảo",
+      "phone": "0934567890",
+      "email": "phuongthao.ng@gmail.com",
+      "type": "hoi_dap",
+      "message": "Áo voan tơ trắng Pearl Voile giặt máy có bị sút nơ hay nhăn không shop?",
+      "status": "resolved",
+      "adminReply": "Dạ nàng nên cho áo vào túi giặt lưới và chọn chế độ giặt nhẹ nhé, chất voan tơ cao cấp bên mình giữ phom cực kì bền ạ.",
+      "createdAt": "2026-08-08T09:10:00.000Z"
+    },
+    {
+      "_id": "fb_5",
+      "customerName": "Vũ Thị Mai Hương",
+      "phone": "0918273645",
+      "email": "maihuong.vu@gmail.com",
+      "type": "gop_y",
+      "message": "Mong shop ra thêm bảng size XL và XXL cho các mẫu đầm midi.",
+      "status": "processing",
+      "adminReply": "Dạ bên mình đang lên lịch bổ sung thêm size XL cho bộ sưu tập Mùa Thu tới ạ.",
+      "createdAt": "2026-08-07T16:00:00.000Z"
+    }
+  ],
+  "reviews": [
+    {
+      "_id": "rev_1",
+      "product": "p1",
+      "customerName": "Minh Thùy",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80",
+      "rating": 5,
+      "content": "Đầm lụa mặc êm da lắm mọi người ơi, đợt này đi tiệc mặc ai cũng khen hết trơn. Sẽ ủng hộ shop nhiều hơn!",
+      "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80",
+      "verifiedPurchase": true,
+      "createdAt": "2026-08-09T15:00:00.000Z"
+    },
+    {
+      "_id": "rev_2",
+      "product": "p3",
+      "customerName": "Phương Anh",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+      "rating": 5,
+      "content": "Set dạ tweed siêu xịn mịn, vải chuẩn xịn không hề xơ hay ngứa. Đóng gói cẩn thận có thơm nức mùi nước hoa.",
+      "verifiedPurchase": true,
+      "createdAt": "2026-08-08T12:00:00.000Z"
+    },
+    {
+      "_id": "rev_3",
+      "product": "p2",
+      "customerName": "Khánh Linh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80",
+      "rating": 5,
+      "content": "Áo voan tơ trắng mặc với chân váy đen đi làm siêu thanh lịch. Vải mát rượi luôn!",
+      "verifiedPurchase": true,
+      "createdAt": "2026-08-07T14:20:00.000Z"
+    }
+  ],
+  "config": {
+    "brandName": "GirlStyle Fashion",
+    "logoUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    "hotline": "1900 6868",
+    "popupPromo": {
+      "active": true,
+      "title": "Chào mừng nàng đến với GirlStyle! ✨",
+      "subtitle": "Nhập mã GIRLSTYLE50K để nhận ngay voucher giảm 50.000đ cho đơn hàng đầu tiên.",
+      "code": "GIRLSTYLE50K",
+      "imageUrl": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80",
+      "delaySeconds": 2
+    },
+    "chatWidget": {
+      "zaloPhone": "0901234567",
+      "facebookId": "girlstyle.fashion",
+      "active": true
+    },
+    "vietqrConfig": {
+      "bankId": "MBBank",
+      "accountNo": "0988889999",
+      "accountName": "GIRLSTYLE FASHION STORE"
+    }
+  },
+  "notifications": [
+    {
+      "_id": "notif_1786419139166",
+      "title": "🛒 Đơn hàng mới!",
+      "message": "Khách hàng test 1 (0933004342) vừa đặt đơn #GS155719 - 2.400.000đ",
+      "orderCode": "GS155719",
+      "customerName": "test 1",
+      "phone": "0933004342",
+      "amount": 2400000,
+      "isRead": false,
+      "createdAt": "2026-08-11T03:32:19.166Z"
+    }
+  ]
+}
