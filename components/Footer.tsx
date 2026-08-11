@@ -56,7 +56,7 @@ export default function Footer() {
           {/* Col 1: Brand Info */}
           <div className="space-y-4">
             <div className="p-1 rounded-xl inline-block">
-              <img src="/logo.png?v=3" alt="GIRLSTYLE®" className="h-12 md:h-14 w-auto object-contain" />
+              <img src="/logo.png?v=4" alt="GIRLSTYLE®" className="h-12 md:h-14 w-auto object-contain" />
             </div>
             <p className="text-xs leading-relaxed text-black/80 font-medium">
               Thương hiệu thời trang nữ trẻ trung, hiện đại và tôn dáng. Nơi biến mỗi khoảnh khắc của nàng trở nên rạng rỡ và tự tin nhất.
